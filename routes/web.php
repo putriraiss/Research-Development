@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Dashboard');
-});
+
+Route::view('/', 'Dashboard')->name('dashboard');
+
+Route::view('/feeds', 'feeds.feeds')->name('feeds');
+

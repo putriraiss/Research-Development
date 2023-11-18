@@ -75,7 +75,7 @@
 
         .card:hover {
             color: var(--white);
-            background: var(--red);
+            background: #BF5C1C;
         }
 
         .card .card-title {
@@ -102,7 +102,7 @@
         }
 
         .card:hover .card-link {
-            background: var(--darkred);
+            background: #BF5C1C;
         }
 
         .cards::-webkit-scrollbar {
@@ -472,13 +472,13 @@
                         style="width: 42px; height: 30px;"> <span class="nav_logo-name">Divisi RnD</span>
                 </a>
                 <div class="nav_list">
-                    <a href="#" class="nav_link active">
+                    <a href="{{ route('dashboard') }}" class="nav_link active">
                         <img src="../assets/foto/homee.svg" alt="">
                         <span class="nav_name">Dashboard</span>
                     </a> <a href="#" class="nav_link">
                         <img src="../assets/foto/progres.svg" alt="">
                         <span class="nav_name">Progres</span>
-                    </a> <a href="#" class="nav_link">
+                    </a> <a href="{{ route('feeds') }}" class="nav_link">
                         <img src="../assets/foto/feeds.svg" alt="">
                         <span class="nav_name">Feeds</span> </a>
                     <a href="#" class="nav_link">
@@ -523,7 +523,7 @@
                 </li>
                 <li class="card">
                     <div>
-                        <h3 class="card-title" style="color:#000000">Desaign</h3>
+                        <h3 class="card-title" style="color:#000000">Design</h3>
                         <div class="card-content">
                             <p>Aenean posuere mauris quam, pellentesque auctor mi bibendum nec. Sed
                                 scelerisque lacus nisi, quis auctor lorem ornare vel.</p>
