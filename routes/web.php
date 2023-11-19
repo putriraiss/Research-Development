@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::view('/landingPage', 'landingPage')->name('landingPage');
+
+Route::view('/login', 'login')->name('login');
 
 Route::view('/', 'Dashboard')->name('dashboard');
 
