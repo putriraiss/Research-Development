@@ -21,3 +21,5 @@ Route::view('/', 'Dashboard')->name('dashboard');
 
 Route::view('/feeds', 'feeds.feeds')->name('feeds');
 
+Route::view('/event', 'event.event')->name('event');
+
