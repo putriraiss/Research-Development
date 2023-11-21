@@ -4,7 +4,7 @@
     <head>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <title>Feeds</title>
+        <title>Detail Feeds</title>
         <!-- Simple bar CSS -->
         <link href="{{ asset('assets/css/simplebar.css') }}" rel="stylesheet">
         <!-- Fonts CSS -->
@@ -40,16 +40,17 @@
                 margin-bottom: 1em;
             }
 
-            .cards {
+            .img {
                 display: flex;
                 flex-wrap: wrap;
                 padding: 25px 10px;
                 list-style: none;
                 justify-content: center;
-                gap: 20px
+                width: 100% gap: 20px
             }
 
             .card {
+                align-items: center;
                 display: flex;
                 flex-direction: column;
                 padding: 20px;
@@ -58,23 +59,11 @@
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
                 scroll-snap-align: start;
                 transition: all 0.2s;
-
+                max-width: 90%;
+                margin: 50px
             }
 
-            .card:not(:nth-child(3n)) {
-                margin-right: 20px;
-                /* Adjust the margin */
-            }
 
-            .card:nth-child(3n) {
-                margin-right: 20px;
-                /* No margin for the last card in each row */
-            }
-
-            .card:hover {
-                color: var(--white);
-                background: #BF5C1C;
-            }
 
             .card .card-title {
                 font-size: 20px;
@@ -82,6 +71,7 @@
 
             .card .card-content {
                 margin: 20px 0;
+                font-size: 13pt;
                 max-width: 100%;
             }
 
@@ -89,19 +79,21 @@
                 margin-top: auto;
             }
 
-            .card .card-link {
-                display: inline-block;
-                text-decoration: none;
-                color: white;
-                background: var(--red);
-                padding: 6px 12px;
-                border-radius: 8px;
-                transition: background 0.2s;
+            .image-container {
+                width: 100%;
+                text-align: center;
+                /* Center the image horizontally */
             }
 
-            .card:hover .card-link {
-                background: #BF5C1C;
+            .card img {
+                max-width: 100%;
+                /* Ensure the image doesn't exceed the card width */
+                height: auto;
+                /* Maintain aspect ratio */
+                border-radius: 8px;
+                /* Optional: Add border-radius to the image */
             }
+
 
             .cards::-webkit-scrollbar {
                 height: 12px;
@@ -120,35 +112,6 @@
                 background: var(--thumb);
             }
 
-            @media (min-width: 500px) {
-                .card {
-                    flex-basis: calc(50% - 10px);
-                }
-
-                .card:not(:last-child) {
-                    margin-right: 20px;
-                }
-            }
-
-            @media (min-width: 700px) {
-                .card {
-                    flex-basis: calc(calc(100% / 3) - 20px);
-                }
-
-                .card:not(:last-child) {
-                    margin-right: 30px;
-                }
-            }
-
-            @media (min-width: 1100px) {
-                .card {
-                    flex-basis: calc(25% - 30px);
-                }
-
-                .card:not(:last-child) {
-                    margin-right: 40px;
-                }
-            }
 
             :root {
                 --red: #ef233c;
@@ -383,6 +346,14 @@
 
             }
 
+            .fixed-width-btn {
+                width: 40px !important;
+                /* Set a fixed width for the button */
+                overflow: hidden;
+                /* Hide overflowing content */
+            }
+
+
             @media screen and (min-width: 768px) {
                 body {
                     margin: calc(var(--header-height) + 1rem) 0 0 0;
@@ -450,12 +421,20 @@
 
             }
 
-            a.custom-card,
-            a.custom-card:hover {
-                color: inherit;
-                text-decoration: none;
-            }
-            
+            .dropdown-item:focus,
+.dropdown-item:hover {
+    background-color: #F3E9D9;
+    color: var(--black)
+
+    
+}
+
+.custom-caption-left,
+.custom-caption-right {
+    font-size: 8pt; /* Set a smaller font size */
+}
+
+
         </style>
     </head>
 
@@ -485,7 +464,6 @@
       <img src="user.svg" alt="">
     </div>
   </header> -->
-
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
                 <div> <a href="#" class="nav_logo"> <img src="../assets/foto/Logo.png" alt="Logo"
@@ -523,201 +501,117 @@
             </nav>
         </div>
 
+
+
         <!--Container Main start-->
         <div class="dashboard">
             <!---Feeds-->
-            <div class="container">
-
-                <h3 style="text-align: center; font-family: 'Poppins', sans-serif; color: black;">FEEDS
-                </h3>
-                <div class="buttons col-md-11 text-right">
-                    <button type="button" class="btn btn-m" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">+ New Feed</button>
+                <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-lg-11 rounded" style="margin-top: 20px; background:#F3E9D9;
+                        ">
+                            <h4 style="font-family: 'Poppins', sans-serif; color: black; margin:10px"> <span style="color: #BF5C1C">|</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates possimus laborum molestias? Nemo voluptas fuga iure similique maiores magni culpa architecto tempora doloremque, aliquam harum?</h4>
+                        </div>
+                        <div class="col-sm-1 text-right" style="margin-top: 20px">
+                            <div class="dropdown">
+                                <button class="btn btn-m fixed-width-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                </svg>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item" href="#">Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <ul class="cards">
-                    <li class="card">
-                        <a class="custom-card" href="{{ route('detail-feeds') }}">
-                            <div style="width: 100%;">
-                                <img src="../assets/foto/berita.svg" alt=""
-                                    style="width: 100%; max-width: 300px;">
-                                <div class="card-content">
-                                    <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
-                                        harum natus fuga et repellat in maiores</p>
-                                </div>
+                
+                <div class="card">
+                    <div class="image-container">
+                        <img src="../assets/foto/berita.svg" alt="" style="width: 100%; max-width: 1000px;">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-sm-6">
+                                <figcaption class="figure-caption custom-caption-left" style="text-align:left; padding:20px"> Written by: Shoko Ieri, Geto Suguru</figcaption>
                             </div>
-                            <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                                <img src="../assets/foto/orangg.svg" alt="" style="margin-right: 10px;">
-                                <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
-                            </div>
-                        </a>
-                    </li>
-                    <li class="card">
-                        <div style="width: 100%;">
-                            <img src="../assets/foto/berita.svg" alt=""
-                                style="width: 100%; max-width: 300px;">
-                            <div class="card-content">
-                                <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
-                                    harum natus fuga et repellat in maiores</p>
-                            </div>
-                        </div>
-                        <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                            <img src="../assets/foto/orangg.svg" alt="" style="margin-right: 10px;">
-                            <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
-                        </div>
-                    </li>
-                    <li class="card">
-                        <div style="width: 100%;">
-                            <img src="../assets/foto/berita1.svg" alt=""
-                                style="width: 100%; max-width: 300px;">
-                            <div class="card-content">
-                                <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
-                                    harum natus fuga et repellat in maiores</p>
-                            </div>
-                        </div>
-                        <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                            <img src="../assets/foto/orang2.svg" alt="" style="margin-right: 10px;">
-                            <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
-                        </div>
-                    </li>
-                    <li class="card">
-                        <div style="width: 100%;">
-                            <img src="../assets/foto/berita2.svg" alt=""
-                                style="width: 100%; max-width: 300px;">
-                            <div class="card-content">
-                                <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
-                                    harum natus fuga et repellat in maiores</p>
-                            </div>
-                        </div>
-                        <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                            <img src="../assets/foto/orang3.svg" alt="" style="margin-right: 10px;">
-                            <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
-                        </div>
-                    </li>
-                    <li class="card">
-                        <div style="width: 100%;">
-                            <img src="../assets/foto/berita.svg" alt=""
-                                style="width: 100%; max-width: 300px;">
-                            <div class="card-content">
-                                <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
-                                    harum natus fuga et repellat in maiores</p>
-                            </div>
-                        </div>
-                        <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                            <img src="../assets/foto/orangg.svg" alt="" style="margin-right: 10px;">
-                            <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
-                        </div>
-                    </li>
-                    <li class="card">
-                        <div style="width: 100%;">
-                            <img src="../assets/foto/berita1.svg" alt=""
-                                style="width: 100%; max-width: 300px;">
-                            <div class="card-content">
-                                <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
-                                    harum natus fuga et repellat in maiores</p>
-                            </div>
-                        </div>
-                        <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                            <img src="../assets/foto/orang2.svg" alt="" style="margin-right: 10px;">
-                            <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
-                        </div>
-                    </li>
-                    <li class="card">
-                        <div style="width: 100%;">
-                            <img src="../assets/foto/berita2.svg" alt=""
-                                style="width: 100%; max-width: 300px;">
-                            <div class="card-content">
-                                <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
-                                    harum natus fuga et repellat in maiores</p>
-                            </div>
-                        </div>
-                        <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                            <img src="../assets/foto/orang3.svg" alt="" style="margin-right: 10px;">
-                            <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
-                        </div>
-                    </li>
-                </ul>
+                            <div class="col-sm-6 text-right">
+                                <figcaption class="figure-caption custom-caption-right" style="text-align:right; padding:20px">Thursday, 26 October 2023</figcaption>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="card-content">
+                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui similique ullam animi quisquam
+                    illum distinctio iure et sed inventore quae, pariatur vitae, reiciendis fugiat aliquam ipsa
+                    debitis fugit assumenda quidem nostrum commodi quasi. Officiis et laborum neque. Nulla
+                    consequuntur quisquam commodi praesentium delectus voluptatum? Assumenda ut nostrum aliquid
+                    dignissimos adipisci, temporibus iusto. Tempore eveniet odio culpa a animi magni vero
+                    reiciendis unde. Fugiat eveniet, nobis assumenda a earum quo ducimus delectus dolore
+                    provident facere incidunt ab iure sequi animi tenetur omnis ut beatae eos nihil sed. Vero,
+                    fuga quia! Reiciendis necessitatibus labore optio alias voluptatum, ipsa adipisci dolor qui
+                    asperiores.
+                </p>
             </div>
         </div>
 
-        <!--Container Main end-->
 
-        <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-        <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'>
-        </script>
-        <script type='text/javascript' src='#'></script>
-        <script type='text/javascript' src='#'></script>
-        <script type='text/javascript' src='#'></script>
-        <script type='text/javascript'>
-            document.addEventListener("DOMContentLoaded", function(event) {
-                const showNavbar = (toggleId, navId, bodyId, headerId) => {
-                    const toggle = document.getElementById(toggleId),
-                        nav = document.getElementById(navId),
-                        bodypd = document.getElementById(bodyId),
-                        headerpd = document.getElementById(headerId)
+            <!--Container Main end-->
 
-                    // Validate that all variables exist
-                    if (toggle && nav && bodypd && headerpd) {
-                        toggle.addEventListener('click', () => {
-                            // show navbar
-                            nav.classList.toggle('show')
-                            // change icon
-                            toggle.classList.toggle('bx-x')
-                            // add padding to body
-                            bodypd.classList.toggle('body-pd')
-                            // add padding to header
-                            headerpd.classList.toggle('body-pd')
-                        })
+            <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+            <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'>
+            </script>
+            <script type='text/javascript' src='#'></script>
+            <script type='text/javascript' src='#'></script>
+            <script type='text/javascript' src='#'></script>
+            <script type='text/javascript'>
+                document.addEventListener("DOMContentLoaded", function(event) {
+                    const showNavbar = (toggleId, navId, bodyId, headerId) => {
+                        const toggle = document.getElementById(toggleId),
+                            nav = document.getElementById(navId),
+                            bodypd = document.getElementById(bodyId),
+                            headerpd = document.getElementById(headerId)
+
+                        // Validate that all variables exist
+                        if (toggle && nav && bodypd && headerpd) {
+                            toggle.addEventListener('click', () => {
+                                // show navbar
+                                nav.classList.toggle('show')
+                                // change icon
+                                toggle.classList.toggle('bx-x')
+                                // add padding to body
+                                bodypd.classList.toggle('body-pd')
+                                // add padding to header
+                                headerpd.classList.toggle('body-pd')
+                            })
+                        }
                     }
-                }
 
-                showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+                    showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
 
-                /*===== LINK ACTIVE =====*/
-                const linkColor = document.querySelectorAll('.nav_link')
+                    /*===== LINK ACTIVE =====*/
+                    const linkColor = document.querySelectorAll('.nav_link')
 
-                function colorLink() {
-                    if (linkColor) {
-                        linkColor.forEach(l => l.classList.remove('active'))
-                        this.classList.add('active')
+                    function colorLink() {
+                        if (linkColor) {
+                            linkColor.forEach(l => l.classList.remove('active'))
+                            this.classList.add('active')
+                        }
                     }
-                }
-                linkColor.forEach(l => l.addEventListener('click', colorLink))
+                    linkColor.forEach(l => l.addEventListener('click', colorLink))
 
-                // Your code to run since DOM is loaded and ready
-            });
-        </script>
-        <script type='text/javascript'>
-            var myLink = document.querySelector('a[href="#"]');
-            myLink.addEventListener('click', function(e) {
-                e.preventDefault();
-            });
-        </script>
+                    // Your code to run since DOM is loaded and ready
+                });
+            </script>
+            <script type='text/javascript'>
+                var myLink = document.querySelector('a[href="#"]');
+                myLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+            </script>
 
-        <script>
-
-var exampleModal = document.getElementById('exampleModal')
-exampleModal.addEventListener('show.bs.modal', function (event) {
-  // Button that triggered the modal
-  var button = event.relatedTarget
-  // Extract info from data-bs-* attributes
-  var recipient = button.getAttribute('data-bs-whatever')
-  // If necessary, you could initiate an AJAX request here
-  // and then do the updating in a callback.
-  //
-  // Update the modal's content.
-  var modalTitle = exampleModal.querySelector('.modal-title')
-  var modalBodyInput = exampleModal.querySelector('.modal-body input')
-
-  modalTitle.textContent = 'New message to ' + recipient
-  modalBodyInput.value = recipient
-});
-        </script>
     </body>
 
 </html>

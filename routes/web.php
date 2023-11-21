@@ -23,3 +23,6 @@ Route::view('/feeds', 'feeds.feeds')->name('feeds');
 
 Route::view('/event', 'event.event')->name('event');
 
+Route::view('/detail-feeds', 'feeds.detail')->name('detail-feeds');
+
+
