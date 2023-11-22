@@ -25,8 +25,8 @@
     <link href="{{ asset('assets/css/app-light.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="css/app-dark.css" id="darkTheme" disabled>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- icon bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
         < script src = "{{ asset('js/jquery.min.js') }}" >
     </script>
@@ -467,11 +467,6 @@
             line-height: normal;
         }
 
-        .btn-close {
-            background-color: #F7F7F7;
-            border: #F7F7F7;
-        }        
-
         .modal-body {
             color: #4F4F4F;
             font-family: 'Poppins', sans-serif;
@@ -510,6 +505,23 @@
         .btn-submit {
             background-color: #BF5C1C;
             color: #FFF;
+        }
+
+        .bi {
+            margin-right: 15px;
+            color: #854836;
+        }
+
+        .modal-body h5 {
+            color: #6A3A2B;
+        }
+
+        .modal-body p {
+            color: #6A3A2B;
+        }
+
+        .modal-date {
+            margin-left: 32px;
         }
     </style>
 </head>
@@ -574,9 +586,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title fs-5" id="headerAdd">Add Event</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa fa-times fa-fw" aria-hidden="true"></i>
-                    </button>
                 </div>
                 <form action="/event" method="POST">
                     <div class="modal-body">
@@ -624,156 +633,126 @@
 
     <!-- modal detail event -->
     <div id="modal-detailEvent" class="modal fade" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-        <div class="modal-dialog detail">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fs-5" id="headerAdd">Detail Event</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/event" method="POST">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="">Event Name</label>
-                            <input type="text" class="form-control" name="Event Name" placeholder="Event Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Event Description</label>
-                            <input type="text" class="form-control" name="Event Description" placeholder="Event Description">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Event Location</label>
-                            <input type="text" class="form-control" name="Event Location" placeholder="Event Location">
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                All Day
-                            </label>
-                        </div>
-
-                        <br>
-                        <div class="form-date">
-                            <div class="form-group">
-                                <label for="">Event Start Date</label>
-                                <input type="datetime-local" class="form-control" name="Event Start Date">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Event End Date</label>
-                                <input type="datetime-local" class="form-control" name="Event End Date">
-                            </div>
-                        </div>
-
-
+                <div class="modal-body">
+                    <div class="modal-event">
+                        <h5><i class="bi bi-calendar-event"></i>Meeting dengan tim peneliti</h5>
+                        <p class="modal-date">11 Okt 2023, 09.00 AM - 11.00 AM</p>
+                        <p><i class="bi bi-geo-alt"></i>Zoom Meeting</p>
+                        <hr />
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-submit">Submit</button>
+                    <div class="modal-detail">
+                        <h5>Event Detail</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
+                </div>
             </div>
-            </form>
         </div>
-    </div>
 
 
-    <script src="{{ asset('assets/js/fullcalendar.js') }}"></script>
-    <script src="{{ asset('assets/js/fullcalendar.custom.js') }}"></script>
+        <script src="{{ asset('assets/js/fullcalendar.js') }}"></script>
+        <script src="{{ asset('assets/js/fullcalendar.custom.js') }}"></script>
 
 
-    <script>
-        /** full calendar */
-        var calendarEl = document.getElementById('calendar');
-        if (calendarEl) {
-            document.addEventListener('DOMContentLoaded', function() {
-                var calendar = new FullCalendar.Calendar(calendarEl, {
-                    plugins: ['dayGrid', 'bootstrap'],
-                    timeZone: 'UTC',
-                    themeSystem: 'bootstrap',
-                    header: {
-                        left: 'today, prev, next',
-                        center: 'title',
-                        right: 'btnAddEvent'
-                    },
-                    buttonIcons: {
-                        prev: 'fe-arrow-left',
-                        next: 'fe-arrow-right',
-                        prevYear: 'left-double-arrow',
-                        nextYear: 'right-double-arrow'
-                    },
-                    customButtons: {
-                        btnAddEvent: {
-                            text: '+ Add Event',
-                            click: function() {
-                                //alert('clicked custom button 2!');
-                                $('#modal-addEvent').modal('show')
+        <script>
+            /** full calendar */
+            var calendarEl = document.getElementById('calendar');
+            if (calendarEl) {
+                document.addEventListener('DOMContentLoaded', function() {
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        plugins: ['dayGrid', 'bootstrap'],
+                        timeZone: 'UTC',
+                        themeSystem: 'bootstrap',
+                        header: {
+                            left: 'today, prev, next',
+                            center: 'title',
+                            right: 'btnAddEvent'
+                        },
+                        buttonIcons: {
+                            prev: 'fe-arrow-left',
+                            next: 'fe-arrow-right',
+                            prevYear: 'left-double-arrow',
+                            nextYear: 'right-double-arrow'
+                        },
+                        customButtons: {
+                            btnAddEvent: {
+                                text: '+ Add Event',
+                                click: function() {
+                                    //alert('clicked custom button 2!');
+                                    $('#modal-addEvent').modal('show')
+                                }
                             }
-                        }
-                    },
-                    eventClick: function(info) {
-                        console.log(info);
-                        $('#modal-detailEvent').modal('show')
-                    },
-                    weekNumbers: true,
-                    eventLimit: true, // allow "more" link when too many events
-                    events: 'https://fullcalendar.io/demo-events.json'
+                        },
+                        eventClick: function(info) {
+                            console.log(info);
+                            $('#modal-detailEvent').modal('show')
+                        },
+                        weekNumbers: true,
+                        eventLimit: true, // allow "more" link when too many events
+                        events: 'https://fullcalendar.io/demo-events.json'
+                    });
+                    calendar.render();
                 });
-                calendar.render();
+            }
+        </script>
+
+        <!--Container Main end-->
+
+        <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+        <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'>
+        </script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+            document.addEventListener("DOMContentLoaded", function(event) {
+                const showNavbar = (toggleId, navId, bodyId, headerId) => {
+                    const toggle = document.getElementById(toggleId),
+                        nav = document.getElementById(navId),
+                        bodypd = document.getElementById(bodyId),
+                        headerpd = document.getElementById(headerId)
+
+                    // Validate that all variables exist
+                    if (toggle && nav && bodypd && headerpd) {
+                        toggle.addEventListener('click', () => {
+                            // show navbar
+                            nav.classList.toggle('showSideBar')
+                            // change icon
+                            toggle.classList.toggle('bx-x')
+                            // add padding to body
+                            bodypd.classList.toggle('body-pd')
+                            // add padding to header
+                            headerpd.classList.toggle('body-pd')
+                        })
+                    }
+                }
+
+                showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+
+                /*===== LINK ACTIVE =====*/
+                const linkColor = document.querySelectorAll('.nav_link')
+
+                function colorLink() {
+                    if (linkColor) {
+                        linkColor.forEach(l => l.classList.remove('active'))
+                        this.classList.add('active')
+                    }
+                }
+                linkColor.forEach(l => l.addEventListener('click', colorLink))
+
+                // Your code to run since DOM is loaded and ready
             });
-        }
-    </script>
-
-    <!--Container Main end-->
-
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'>
-    </script>
-    <script type='text/javascript' src='#'></script>
-    <script type='text/javascript' src='#'></script>
-    <script type='text/javascript' src='#'></script>
-    <script type='text/javascript'>
-        document.addEventListener("DOMContentLoaded", function(event) {
-            const showNavbar = (toggleId, navId, bodyId, headerId) => {
-                const toggle = document.getElementById(toggleId),
-                    nav = document.getElementById(navId),
-                    bodypd = document.getElementById(bodyId),
-                    headerpd = document.getElementById(headerId)
-
-                // Validate that all variables exist
-                if (toggle && nav && bodypd && headerpd) {
-                    toggle.addEventListener('click', () => {
-                        // show navbar
-                        nav.classList.toggle('showSideBar')
-                        // change icon
-                        toggle.classList.toggle('bx-x')
-                        // add padding to body
-                        bodypd.classList.toggle('body-pd')
-                        // add padding to header
-                        headerpd.classList.toggle('body-pd')
-                    })
-                }
-            }
-
-            showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
-
-            /*===== LINK ACTIVE =====*/
-            const linkColor = document.querySelectorAll('.nav_link')
-
-            function colorLink() {
-                if (linkColor) {
-                    linkColor.forEach(l => l.classList.remove('active'))
-                    this.classList.add('active')
-                }
-            }
-            linkColor.forEach(l => l.addEventListener('click', colorLink))
-
-            // Your code to run since DOM is loaded and ready
-        });
-    </script>
-    <script type='text/javascript'>
-        var myLink = document.querySelector('a[href="#"]');
-        myLink.addEventListener('click', function(e) {
-            e.preventDefault();
-        });
-    </script>
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="#"]');
+            myLink.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        </script>
 
 </body>
 
