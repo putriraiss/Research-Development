@@ -25,6 +25,8 @@
     <link href="{{ asset('assets/css/app-light.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="css/app-dark.css" id="darkTheme" disabled>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
         < script src = "{{ asset('js/jquery.min.js') }}" >
     </script>
@@ -228,7 +230,7 @@
             --first-color: #F7F7F7;
             --first-color-light: #000000;
             --white-color: #EFE0CA;
-            --btn-color:#BF5C1C;
+            --btn-color: #BF5C1C;
             --body-font: 'Nunito', sans-serif;
             --normal-font-size: 1rem;
             --z-fixed: 100
@@ -345,7 +347,7 @@
             font-size: 1.25rem
         }
 
-        .show {
+        .showSideBar {
             left: 0
         }
 
@@ -395,7 +397,7 @@
                 padding: 1rem 1rem 0 0
             }
 
-            .show {
+            .showSideBar {
                 width: calc(var(--nav-width) + 188px)
             }
 
@@ -434,7 +436,80 @@
                 color: black;
                 font-size: 14px;
             }
+        }
 
+        #calendar {
+            margin: 20px;
+        }
+
+        .fc-btnAddEvent-button {
+            font-family: 'Poppins', sans-serif !important;
+            color: #F7F7F7 !important;
+            font-size: 14px !important;
+            text-transform: none !important;
+            padding: 10px 14px !important;
+            background-color: #BF5C1C !important;
+        }
+
+        .modal-dialog {
+            width: 512px;
+            height: max-content;
+            border-radius: 8px;
+            background-color: #F7F7F7;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .modal-header {
+            color: #333333;
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+
+        .btn-close {
+            background-color: #F7F7F7;
+            border: #F7F7F7;
+        }        
+
+        .modal-body {
+            color: #4F4F4F;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: normal;
+            line-height: normal;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 0.8px solid var(--Blue-1, #2F80ED);
+            background-color: #FFF;
+            box-shadow: 0px 4px 6px 3px rgba(45, 83, 219, 0.10);
+            color: var(--Gray-4, #BDBDBD);
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        .form-control::placeholder {
+            color: var(--Gray-4, #BDBDBD);
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        .form-date {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn-submit {
+            background-color: #BF5C1C;
+            color: #FFF;
         }
     </style>
 </head>
@@ -493,9 +568,116 @@
         <div id='calendar'></div>
     </div>
 
+    <!-- modal add event -->
+    <div id="modal-addEvent" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5" id="headerAdd">Add Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times fa-fw" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <form action="/event" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Event Name</label>
+                            <input type="text" class="form-control" name="Event Name" placeholder="Event Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Event Description</label>
+                            <input type="text" class="form-control" name="Event Description" placeholder="Event Description">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Event Location</label>
+                            <input type="text" class="form-control" name="Event Location" placeholder="Event Location">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                All Day
+                            </label>
+                        </div>
+
+                        <br>
+                        <div class="form-date">
+                            <div class="form-group">
+                                <label for="">Event Start Date</label>
+                                <input type="datetime-local" class="form-control" name="Event Start Date">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Event End Date</label>
+                                <input type="datetime-local" class="form-control" name="Event End Date">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-submit">Submit</button>
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- modal detail event -->
+    <div id="modal-detailEvent" class="modal fade" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog detail">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5" id="headerAdd">Detail Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+                <form action="/event" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Event Name</label>
+                            <input type="text" class="form-control" name="Event Name" placeholder="Event Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Event Description</label>
+                            <input type="text" class="form-control" name="Event Description" placeholder="Event Description">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Event Location</label>
+                            <input type="text" class="form-control" name="Event Location" placeholder="Event Location">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                All Day
+                            </label>
+                        </div>
+
+                        <br>
+                        <div class="form-date">
+                            <div class="form-group">
+                                <label for="">Event Start Date</label>
+                                <input type="datetime-local" class="form-control" name="Event Start Date">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Event End Date</label>
+                                <input type="datetime-local" class="form-control" name="Event End Date">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-submit">Submit</button>
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
 
     <script src="{{ asset('assets/js/fullcalendar.js') }}"></script>
     <script src="{{ asset('assets/js/fullcalendar.custom.js') }}"></script>
+
 
     <script>
         /** full calendar */
@@ -519,11 +701,16 @@
                     },
                     customButtons: {
                         btnAddEvent: {
-                            text: 'Add Event',
+                            text: '+ Add Event',
                             click: function() {
                                 //alert('clicked custom button 2!');
+                                $('#modal-addEvent').modal('show')
                             }
                         }
+                    },
+                    eventClick: function(info) {
+                        console.log(info);
+                        $('#modal-detailEvent').modal('show')
                     },
                     weekNumbers: true,
                     eventLimit: true, // allow "more" link when too many events
@@ -554,7 +741,7 @@
                 if (toggle && nav && bodypd && headerpd) {
                     toggle.addEventListener('click', () => {
                         // show navbar
-                        nav.classList.toggle('show')
+                        nav.classList.toggle('showSideBar')
                         // change icon
                         toggle.classList.toggle('bx-x')
                         // add padding to body
