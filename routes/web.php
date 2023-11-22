@@ -21,12 +21,8 @@ Route::view('/', 'Dashboard')->name('dashboard');
 
 Route::view('/feeds', 'feeds.feeds')->name('feeds');
 
-<<<<<<< Updated upstream
 Route::view('/event', 'event.event')->name('event');
 
 Route::view('/detail-feeds', 'feeds.detail')->name('detail-feeds');
 
-
-=======
 Route::view('/project', 'project.project')->name('project');
->>>>>>> Stashed changes
