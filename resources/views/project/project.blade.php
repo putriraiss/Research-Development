@@ -334,19 +334,19 @@
                 min-height: auto; /* Adjust the minimum height according to your preference */
             }
             .card-tengah {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  background: var(--white);
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
-  scroll-snap-align: start;
-  transition: all 0.2s;
-  margin-bottom: 35px; /* Adjust the gap between cards */
-  width: 500px;
-  align-items:left;
-  margin-right:20px;
-}
+               display: flex;
+               flex-direction: column;
+               padding: 10px;
+               background: var(--white);
+               border-radius: 12px;
+               box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+               scroll-snap-align: start;
+               transition: all 0.2s;
+               margin-bottom: 35px; 
+               width: 500px;
+               align-items:left;
+               margin-right:20px;
+              }
 
             .title{
                 font-size: 28px;
@@ -377,9 +377,8 @@
                 width: 40px;
                 height: 40px;
             }
-            /* Menambahkan border putih dan background putih pada tabel */
-.table {
-    display: flex;
+            .table {
+                display: flex;
                 flex-direction: column;
                 padding: 10px;
                 background: var(--white);
@@ -388,13 +387,11 @@
                 scroll-snap-align: start;
                 transition: all 0.2s;
                 margin-bottom: 20px;
-}
-
-/* Menambahkan margin-bottom ke avatar untuk memberi jarak antar baris */
-.avatar {
-  margin-bottom: 20px;
-  margin-left:20px;
-}
+              }
+              .avatar {
+                margin-bottom: 20px;
+                margin-left:20px;
+              }
         }
         </style>
     </head>
@@ -513,14 +510,14 @@
         <progress class="progress progress-warning w-56" value="70" max="100"style="margin-top: 10px; margin-bottom: 10px;"></progress>
         <p style="margin-bottom:5px; margin-left: 20px;font-size:15px;"> 55% Completed</p>
         </div>
+
         <h4 class="card-title" style="color:#4f4f4f; margin-top: 25px">Overview</h4>
         <p style="text-align: justify; text-indent:50px;">The Environment Impact Mitigation project is a comprehensive initiative designed to address and alleviate the environmental effects associated with mining operations. It seeks to minimize, if not entirely eliminate, the negative consequences on the surrounding ecosystems, communities, and natural resources. This project embodies a commitment to responsible and sustainable mining practices.</p>
         <h4 class="card-title" style="color:#4f4f4f; margin-top: 25px">Tasks</h4>
         <div class="col-span-3">
         <div class="dashboard">
-  <div class="container">
-  <div class="card card-tengah">
-    <div style="width: 100%;">
+          <div class="container">
+            <div class="card card-tengah"><div style="width: 100%;">
                             <div class="card-content">
                             <div class="badge badge-primary" style="background-color: #BF5C1C;color: #FFFFFF;">Research</div>
                             <h4 class="card-title" style="color:#4f4f4f; margin-top: 25px">Infrastructure Development.Infrastructure Development.</h4>
@@ -529,9 +526,9 @@
                         <div class="card-link-wrapper" style="display: flex; align-items: center;">
                         <img src="../assets/foto/menu-dot.png" alt="" style="margin-left: auto; margin-top: 0; position: absolute; top: 19px; right: 30px;">
                         </div>
-    </div>
-    <div class="card card-tengah">
-    <div style="width: 100%;">
+                      </div>
+                      <div class="card card-tengah">
+                        <div style="width: 100%;">
                             <div class="card-content">
                             <div class="badge badge-primary" style="background-color: #BF5C1C;color: #FFFFFF;">Developer</div>
                             <h4 class="card-title" style="color:#4f4f4f; margin-top: 25px;">Marketing page redesigning.</h4>
@@ -540,11 +537,11 @@
                         <div class="card-link-wrapper" style="display: flex; align-items: center;">
                         <img src="../assets/foto/menu-dot.png" alt="" style="margin-left: auto; margin-top: 0; position: absolute; top: 19px; right: 30px;">
                         </div>
-    </div>
-  </div>
-    </div>
-  </div>
-</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 <!-- KANAN -->
 <div class="col-span-1" style="margin-left: 10px; margin-right: -35px;">
@@ -666,18 +663,12 @@
       <!-- row 4 -->
       
     </tfoot>
-    
   </table>
 </div>
-  </div>
 </div>
-
-    
-    </div>
 </div>
-<!-- Container Main end -->
-
-
+</div>
+</div>
 
         <!--Container Main end-->
 
@@ -732,9 +723,6 @@
                 e.preventDefault();
             });
         </script>
-
-
-
-    </body>
-
-</html>
+      </body>
+  
+    </html>
