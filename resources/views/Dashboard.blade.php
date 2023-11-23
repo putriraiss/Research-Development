@@ -28,9 +28,11 @@
     <link rel="stylesheet" href="css/app-dark.css" id="darkTheme" disabled>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
-        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        < script src = "{{ asset('js/jquery.min.js') }}" >
 
-        
+    </script>
+
+
     </script>
     <style>
         ::-webkit-scrollbar {
@@ -475,19 +477,16 @@
                     <a href="{{ route('dashboard') }}" class="nav_link active">
                         <img src="../assets/foto/homee.svg" alt="">
                         <span class="nav_name">Dashboard</span>
-                    </a> <a href="#" class="nav_link">
-                        <img src="../assets/foto/progres.svg" alt="">
-                        <span class="nav_name">Progres</span>
-                    </a> <a href="{{ route('feeds') }}" class="nav_link">
+                    </a><a href="{{ route('feeds') }}" class="nav_link">
                         <img src="../assets/foto/feeds.svg" alt="">
                         <span class="nav_name">Feeds</span> </a>
-                    <a href="#" class="nav_link">
+                    <a href="{{ route('project') }}" class="nav_link">
                         <img src="../assets/foto/carbon_collaborate.svg" alt="">
                         <span class="nav_name">Collaboration</span>
-                    </a> <a href="#" class="nav_link">
+                    </a> <a href="{{ route('event') }}" class="nav_link">
                         <img src="../assets/foto/calander.svg" alt="">
                         <span class="nav_name">Calendar</span>
-                    </a> <a href="#" class="nav_link">
+                    </a> <a href="{{ route('profile') }}" class="nav_link">
                         <img src="../assets/foto/User2.svg" alt="">
                         <span class="nav_name">Profile</span>
                     </a>
@@ -688,7 +687,7 @@
     </div> <!-- .container-fluid -->
     <script src="{{ asset('assets/js/fullcalendar.js') }}"></script>
     <script src="{{ asset('assets/js/fullcalendar.custom.js') }}"></script>
-    
+
     <script>
         /** full calendar */
         var calendarEl = document.getElementById('calendar');

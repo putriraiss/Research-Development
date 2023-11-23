@@ -7,7 +7,9 @@
     <!-- Simple bar CSS -->
     <link href="{{ asset('assets/css/simplebar.css') }}" rel="stylesheet">
     <!-- Fonts CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <!-- Icons CSS -->
     <link href="{{ asset('assets/css/feather.css') }}" rel="stylesheet">
     <!-- FullCalendar CSS -->
@@ -29,6 +31,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
         < script src = "{{ asset('js/jquery.min.js') }}" >
+
     </script>
 
 
@@ -523,6 +526,7 @@
         .modal-date {
             margin-left: 32px;
         }
+
     </style>
 </head>
 
@@ -544,25 +548,23 @@
     </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
-            <div> <a href="#" class="nav_logo"> <img src="../assets/foto/Logo.png" alt="Logo" class="nav_logo-icon" style="width: 42px; height: 30px;"> <span class="nav_logo-name">Divisi RnD</span>
+            <div> <a href="#" class="nav_logo"> <img src="../assets/foto/Logo.png" alt="Logo" class="nav_logo-icon"
+                        style="width: 42px; height: 30px;"> <span class="nav_logo-name">Divisi RnD</span>
                 </a>
                 <div class="nav_list">
                     <a href="{{ route('dashboard') }}" class="nav_link active">
                         <img src="../assets/foto/homee.svg" alt="">
                         <span class="nav_name">Dashboard</span>
-                    </a> <a href="#" class="nav_link">
-                        <img src="../assets/foto/progres.svg" alt="">
-                        <span class="nav_name">Progres</span>
-                    </a> <a href="{{ route('feeds') }}" class="nav_link">
+                    </a><a href="{{ route('feeds') }}" class="nav_link">
                         <img src="../assets/foto/feeds.svg" alt="">
                         <span class="nav_name">Feeds</span> </a>
-                    <a href="#" class="nav_link">
+                    <a href="{{ route('project') }}" class="nav_link">
                         <img src="../assets/foto/carbon_collaborate.svg" alt="">
                         <span class="nav_name">Collaboration</span>
-                    </a> <a href="{{ route('event') }}" class="nav_link"> <!-- belum bisa ngelink -->
+                    </a> <a href="{{ route('event') }}" class="nav_link">
                         <img src="../assets/foto/calander.svg" alt="">
                         <span class="nav_name">Calendar</span>
-                    </a> <a href="#" class="nav_link">
+                    </a> <a href="{{ route('profile') }}" class="nav_link">
                         <img src="../assets/foto/User2.svg" alt="">
                         <span class="nav_name">Profile</span>
                     </a>
@@ -595,7 +597,8 @@
                         </div>
                         <div class="form-group">
                             <label for="">Event Description</label>
-                            <input type="text" class="form-control" name="Event Description" placeholder="Event Description">
+                            <input type="text" class="form-control" name="Event Description"
+                                placeholder="Event Description">
                         </div>
                         <div class="form-group">
                             <label for="">Event Location</label>
@@ -647,7 +650,8 @@
                     </div>
                     <div class="modal-detail">
                         <h5>Event Detail</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
                     </div>
                 </div>
             </div>
@@ -662,7 +666,7 @@
             /** full calendar */
             var calendarEl = document.getElementById('calendar');
             if (calendarEl) {
-                document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('DOMContentLoaded', function () {
                     var calendar = new FullCalendar.Calendar(calendarEl, {
                         plugins: ['dayGrid', 'bootstrap'],
                         timeZone: 'UTC',
@@ -681,13 +685,13 @@
                         customButtons: {
                             btnAddEvent: {
                                 text: '+ Add Event',
-                                click: function() {
+                                click: function () {
                                     //alert('clicked custom button 2!');
                                     $('#modal-addEvent').modal('show')
                                 }
                             }
                         },
-                        eventClick: function(info) {
+                        eventClick: function (info) {
                             console.log(info);
                             $('#modal-detailEvent').modal('show')
                         },
@@ -698,18 +702,20 @@
                     calendar.render();
                 });
             }
+
         </script>
 
         <!--Container Main end-->
 
         <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-        <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'>
+        <script type='text/javascript'
+            src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'>
         </script>
         <script type='text/javascript' src='#'></script>
         <script type='text/javascript' src='#'></script>
         <script type='text/javascript' src='#'></script>
         <script type='text/javascript'>
-            document.addEventListener("DOMContentLoaded", function(event) {
+            document.addEventListener("DOMContentLoaded", function (event) {
                 const showNavbar = (toggleId, navId, bodyId, headerId) => {
                     const toggle = document.getElementById(toggleId),
                         nav = document.getElementById(navId),
@@ -746,12 +752,14 @@
 
                 // Your code to run since DOM is loaded and ready
             });
+
         </script>
         <script type='text/javascript'>
             var myLink = document.querySelector('a[href="#"]');
-            myLink.addEventListener('click', function(e) {
+            myLink.addEventListener('click', function (e) {
                 e.preventDefault();
             });
+
         </script>
 
 </body>
