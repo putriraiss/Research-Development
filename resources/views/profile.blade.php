@@ -576,7 +576,6 @@
                     <i class="fas fa-times"></i> <!-- Font Awesome "x" icon -->
                 </span>
                 <h2>Edit Profile</h2>
-
                 <label for="newProfilePic">New Profile Picture:</label>
                 <input type="file" id="newProfilePic">
                 <br>
@@ -708,5 +707,4 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 
 </body>
-
 </html>
