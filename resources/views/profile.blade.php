@@ -534,7 +534,6 @@
                     <<a href="{{ route('dashboard') }}" class="nav_link active">
                         <img src="../assets/foto/homee.svg" alt="">
                         <span class="nav_name">Dashboard</span>
-<<<<<<< HEAD
                     </a><a href="{{ route('feeds') }}" class="nav_link">
                         <img src="../assets/foto/feeds.svg" alt="">
                         <span class="nav_name">Feeds</span> </a>
@@ -548,22 +547,6 @@
                         <img src="../assets/foto/User2.svg" alt="">
                         <span class="nav_name">Profile</span>
                     </a>
-=======
-                        </a>
-                        </a> <a href="{{ route('feeds') }}" class="nav_link">
-                            <img src="../assets/foto/feeds.svg" alt="">
-                            <span class="nav_name">Feeds</span> </a>
-                        <a href="{{ route('project') }}" class="nav_link">
-                            <img src="../assets/foto/carbon_collaborate.svg" alt="">
-                            <span class="nav_name">Collaboration</span>
-                        </a> <a href="{{ route('event') }}" class="nav_link">
-                            <img src="../assets/foto/calander.svg" alt="">
-                            <span class="nav_name">Calendar</span>
-                        </a> <a href="{{ route('profile') }}" class="nav_link">
-                            <img src="../assets/foto/User2.svg" alt="">
-                            <span class="nav_name">Profile</span>
-                        </a>
->>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
 
                 </div>
 

@@ -21,7 +21,6 @@
 
 
     <style>
-<<<<<<< HEAD
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -44,7 +43,6 @@
         ::-webkit-scrollbar-thumb {
             background: #F7F7F7;
         }
-=======
     ::-webkit-scrollbar {
         width: 8px;
     }
@@ -67,23 +65,19 @@
     ::-webkit-scrollbar-thumb {
         background: #F7F7F7;
     }
->>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
 
         */
 
-<<<<<<< HEAD
         /* SearchBox*/
         .search-container {
             display: flex;
             align-items: center;
         }
-=======
     /* SearchBox*/
     .search-container {
         display: flex;
         align-items: center;
     }
->>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
 
         /*.search-box {
           padding: 8px 80px;
@@ -91,7 +85,6 @@
           border: none;
           border-radius: 24px;
       }*/
-<<<<<<< HEAD
         .search-box {
             padding: 8px 80px;
             /* Menggunakan 10vw untuk membuat padding responsif */
@@ -119,35 +112,6 @@
             color: #007bff;
             /* Warna ikon dapat disesuaikan */
         }
-=======
-    .search-box {
-        padding: 8px 80px;
-        /* Menggunakan 10vw untuk membuat padding responsif */
-        margin-right: 8px;
-        border: none;
-        border-radius: 24px;
-        max-width: 300px;
-        /* Optional: Mengatur lebar maksimum search box */
-    }
-
-    .search-btn {
-        padding: 8px 12px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        background-color: #007bff;
-        /* Warna tombol dapat disesuaikan */
-        color: #fff;
-    }
-
-    .search-icon {
-        font-size: 1.5rem;
-        /* Sesuaikan ukuran ikon sesuai kebutuhan */
-        margin-right: 8px;
-        color: #007bff;
-        /* Warna ikon dapat disesuaikan */
-    }
->>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
 
         /* Handle on hover
             ::-webkit-scrollbar-thumb:hover {
@@ -156,7 +120,6 @@
 
         @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
-<<<<<<< HEAD
         :root {
             --header-height: 3rem;
             --nav-width: 75px;
@@ -309,174 +272,14 @@
             background-color: #BF5C1C;
             color: white;
         }
-=======
-    :root {
-        --header-height: 3rem;
-        --nav-width: 75px;
-        --first-color: #F7F7F7;
-        --first-color-light: #000000;
-        --white-color: #EFE0CA;
-        --body-font: 'Nunito', sans-serif;
-        --normal-font-size: 1rem;
-        --z-fixed: 100
-    }
-
-    *,
-    ::before,
-    ::after {
-        box-sizing: border-box
-    }
-
-    body {
-        position: relative;
-        margin: var(--header-height) 0 0 0;
-        padding: 0 0rem;
-        font-family: var(--body-font);
-        font-size: var(--normal-font-size);
-        transition: .5s
-    }
-
-    a {
-        text-decoration: none
-    }
-
-    .header {
-        width: 100%;
-        height: var(--header-height);
-        position: fixed;
-        top: 0;
-        left: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 1rem;
-        background-color: #F7F7F7;
-        z-index: var(--z-fixed);
-        transition: .5s
-    }
-
-    .header_toggle {
-        color: #000000;
-        font-size: 1.5rem;
-        cursor: pointer
-    }
-
-    .header_img {
-        width: 35px;
-        height: 35px;
-        display: flex;
-        justify-content: center;
-        border-radius: 50%;
-        overflow: hidden
-    }
-
-    .header_img img {
-        width: 40px
-    }
-
-    .l-navbar {
-        position: fixed;
-        top: 0;
-        left: -30%;
-        width: var(--nav-width);
-        height: 100vh;
-        background-color: var(--first-color);
-        padding: .5rem 1rem 0 0;
-        transition: .5s;
-        z-index: var(--z-fixed)
-    }
-
-    .nav {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        overflow: hidden
-    }
-
-    .nav_logo,
-    .nav_link {
-        display: grid;
-        grid-template-columns: max-content max-content;
-        align-items: center;
-        column-gap: 1rem;
-        padding: .5rem 0 .5rem 1.5rem
-    }
-
-    .nav_logo {
-        margin-bottom: 2rem
-    }
-
-    .nav_logo-icon {
-        font-size: 1.25rem;
-        color: var(--white-color)
-    }
-
-    .nav_logo-name {
-        color: #000000;
-        font-weight: 700
-    }
-
-    .nav_link {
-        position: relative;
-        color: var(--first-color-light);
-        margin-bottom: 1.5rem;
-        transition: .3s
-    }
-
-    .nav_link:hover {
-        color: var(--white-color)
-    }
-
-    .nav_icon {
-        font-size: 1.25rem
-    }
-
-    .show {
-        left: 0
-    }
-
-    .body-pd {
-        padding-left: calc(var(--nav-width) + 1rem)
-    }
-
-    .active {
-        color: var(--white-color)
-    }
-
-    .active::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 2px;
-        height: 32px;
-        background-color: var(--white-color)
-    }
-
-    .height-100 {
-        height: 100vh
-    }
-
-    .btn {
-        content: inherit;
-        background-color: #BF5C1C;
-        color: white;
-    }
->>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
 
         .btn:hover {
 
-<<<<<<< HEAD
             color: #BF5C1C;
             background-color: var(--white);
-=======
-        color: #BF5C1C;
-        background-color: var(--white);
->>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
 
         }
 
-<<<<<<< HEAD
         @media screen and (min-width: 768px) {
             body {
                 margin: calc(var(--header-height) + 1rem) 0 0 0;
@@ -649,179 +452,6 @@
 
         }
 
-=======
-    @media screen and (min-width: 768px) {
-        body {
-            margin: calc(var(--header-height) + 1rem) 0 0 0;
-            padding-left: calc(var(--nav-width) + 0rem);
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-        }
-
-        .header {
-            height: calc(var(--header-height) + 1rem);
-            padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
-        }
-
-        .header_img {
-            width: 40px;
-            height: 40px
-        }
-
-        .header_img img {
-            width: 45px
-        }
-
-        .l-navbar {
-            left: 0;
-            padding: 1rem 1rem 0 0
-        }
-
-        .show {
-            width: calc(var(--nav-width) + 188px)
-        }
-
-        .body-pd {
-            padding-left: calc(var(--nav-width) + 188px)
-        }
-
-        .header {
-            display: flex;
-            align-items: center;
-        }
-
-        .header_toggle {
-            margin-right: 15px;
-        }
-
-        .search-container {
-            margin-right: -205px;
-        }
-
-        .header_user {
-            display: flex;
-            align-items: center;
-        }
-
-        .header_img img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 5px;
-            /* Jarak antara gambar dan nama */
-        }
-
-        .user_name {
-            font-family: 'Poppins', sans-serif;
-            color: black;
-            font-size: 14px;
-
-
-            /*Projects*/
-        }
-
-        .card {
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
-            scroll-snap-align: start;
-            transition: all 0.2s;
-            margin-bottom: 20px;
-            min-height: auto;
-            /* Adjust the minimum height according to your preference */
-        }
-
-        .card-tengah {
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
-            scroll-snap-align: start;
-            transition: all 0.2s;
-            margin-bottom: 35px;
-            width: 500px;
-            align-items: left;
-            margin-right: 20px;
-        }
-
-        .title {
-            font-size: 28px;
-            font-family: 'Poppins', sans-serif;
-            color: #4f4f4f;
-            margin-bottom: 1em;
-            font-weight: 500px;
-        }
-
-        .container {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .col-span-1 {
-            width: 23%;
-            margin-top: 100px;
-        }
-
-        .col-span-2 {
-            width: 49%;
-            margin-top: 70px;
-        }
-
-        .col-span-3 {
-            width: 100%;
-            margin-top: 1em;
-            margin-right: 8px;
-            margin-left: 8px;
-        }
-
-        .c-project {
-            width: 40px;
-            height: 40px;
-        }
-
-        .table {
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(20%, 20%, 20%, 20%);
-            scroll-snap-align: start;
-            transition: all 0.2s;
-            margin-bottom: 20px;
-        }
-
-        .avatar {
-            margin-bottom: 20px;
-            margin-left: 20px;
-        }
-
-        /* Tambahkan CSS untuk kalender dan teman-temannya */
-        .calendar-friends-container {
-            display: flex;
-            align-items: center;
-            margin-left: 8px;
-        }
-
-        .calendar-friends-container img {
-            margin-left: 5px;
-        }
-
-        .calendar-friends-container p {
-            margin-bottom: 5px;
-            font-size: 15px;
-            margin-left: 5px;
-        }
-
-    }
->>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
     </style>
 </head>
 
@@ -857,7 +487,6 @@
                         style="width: 42px; height: 30px;"> <span class="nav_logo-name">Divisi
                         RnD</span>
                 </a>
-<<<<<<< HEAD
                 <div class="nav_list">
                     <a href="{{ route('dashboard') }}" class="nav_link active">
                         <img src="../assets/foto/homee.svg" alt="">
@@ -884,7 +513,6 @@
                 <span class="nav_name">Logout</span>
             </a>
         </nav>
-=======
                 <a href="{{ route('dashboard') }}" class="nav_link active">
                     <img src="../assets/foto/homee.svg" alt="">
                     <span class="nav_name">Dashboard</span>
@@ -911,7 +539,6 @@
         <span class="nav_name">Logout</span>
     </a>
     </nav>
->>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
     </div>
 
     <!-- Container Main start -->
@@ -984,7 +611,6 @@
                         style="margin-top: 10px; margin-bottom: 10px;"></progress>
                     <p style="margin-bottom:5px; margin-left: 20px;font-size:15px;"> 55% Completed</p>
                 </div>
-<<<<<<< HEAD
 
                 <h4 class="card-title" style="color:#4f4f4f; margin-top: 25px">Overview</h4>
                 <p style="text-align: justify; text-indent:50px;">The Environment Impact Mitigation project is a
@@ -1293,7 +919,6 @@
             e.preventDefault();
         });
 
-=======
 
                 <h4 class="card-title" style="color:#4f4f4f; margin-top: 25px">Overview</h4>
                 <p style="text-align: justify; text-indent:50px;">The Environment Impact Mitigation project is a
@@ -1600,7 +1225,6 @@
     myLink.addEventListener('click', function(e) {
         e.preventDefault();
     });
->>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
     </script>
 </body>
 

@@ -28,12 +28,9 @@
     <link rel="stylesheet" href="css/app-dark.css" id="darkTheme" disabled>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
-<<<<<<< HEAD
         < script src = "{{ asset('js/jquery.min.js') }}" >
 
-=======
     < script src = "{{ asset('js/jquery.min.js') }}" >
->>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
     </script>
 
 
@@ -480,12 +477,7 @@
                     <a href="{{ route('dashboard') }}" class="nav_link active">
                         <img src="../assets/foto/homee.svg" alt="">
                         <span class="nav_name">Dashboard</span>
-<<<<<<< HEAD
                     </a><a href="{{ route('feeds') }}" class="nav_link">
-=======
-                    </a>
-                    </a> <a href="{{ route('feeds') }}" class="nav_link">
->>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
                         <img src="../assets/foto/feeds.svg" alt="">
                         <span class="nav_name">Feeds</span> </a>
                     <a href="{{ route('project') }}" class="nav_link">
@@ -695,7 +687,6 @@
     </div> <!-- .container-fluid -->
     <script src="{{ asset('assets/js/fullcalendar.js') }}"></script>
     <script src="{{ asset('assets/js/fullcalendar.custom.js') }}"></script>
-<<<<<<< HEAD
 
     <script>
         /** full calendar */
@@ -724,8 +715,6 @@
                 calendar.render();
             });
         }
-=======
->>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
 
     <script>
     /** full calendar */
