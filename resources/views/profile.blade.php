@@ -531,7 +531,7 @@
                         RnD</span>
                 </a>
                 <div class="nav_list">
-                    <<a href="{{ route('dashboard') }}" class="nav_link active">
+                    <a href="{{ route('dashboard') }}" class="nav_link active">
                         <img src="../assets/foto/homee.svg" alt="">
                         <span class="nav_name">Dashboard</span>
                     </a><a href="{{ route('feeds') }}" class="nav_link">

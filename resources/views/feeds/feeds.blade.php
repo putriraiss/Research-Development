@@ -345,7 +345,7 @@
                 font-size: 1.25rem
             }
 
-            .show {
+            .showSideBar {
                 left: 0
             }
 
@@ -408,7 +408,7 @@
                     padding: 1rem 1rem 0 0
                 }
 
-                .show {
+                .showSideBar {
                     width: calc(var(--nav-width) + 188px)
                 }
 
@@ -455,7 +455,130 @@
                 color: inherit;
                 text-decoration: none;
             }
-            
+
+            .modal-dialog {
+            width: 512px;
+            height: max-content;
+            border-radius: 8px;
+            background-color: #F7F7F7;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .modal-header {
+            color: #333333;
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+
+        .modal-body {
+            color: #4F4F4F;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: normal;
+            line-height: normal;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 0.8px solid var(--Blue-1, #2F80ED);
+            background-color: #FFF;
+            box-shadow: 0px 4px 6px 3px rgba(45, 83, 219, 0.10);
+            color: var(--Gray-4, #BDBDBD);
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        .form-control::placeholder {
+            color: var(--Gray-4, #BDBDBD);
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        
+        .modal-body h5 {
+            color: #6A3A2B;
+        }
+
+        .modal-body p {
+            color: #6A3A2B;
+        }
+
+        body {
+	padding-top: 50px;
+}
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.multiple-select {
+	min-height: 40px;
+	overflow: auto;
+}
+.multiple-select-choices, .multiple-select-choices li, .multiple-select-choices input {
+	height: 100%;
+	width: 100%;
+	border: none;
+	outline: 0 none;
+}
+.multiple-select-choices li.choice-active,
+.multiple-select-choices li.choice-active input {
+	float: left;
+	height: auto;
+	width: auto;
+}
+.multiple-select-choices li.choice-active input {
+	width: 20px;
+}
+.multiple-select-dropdown {
+	display: none;
+	background: #eee;
+	max-height: 250px;
+	overflow: auto;
+	position: absolute;
+	top: 100%;
+}
+.multiple-select-dropdown li {
+	display: block;
+	text-decoration: none;
+	color: #000;
+	padding: 5px 15px;
+	cursor: pointer;
+}
+.multiple-select-dropdown li:hover {
+	background: #BF5C1C;
+	color: #fff;
+}
+.multiple-select-choices li:not(.input) {
+	float: left;
+	margin-right: 5px;
+	padding: 0 5px;
+	margin-bottom: 5px;
+	font-size: 14px;
+	background: #BF5C1C;
+	border-radius: 3px;
+    color: white;
+}
+.multiple-select-choices li a {
+	font-size: 18px;
+	color: #000;
+}
+.option-disabled {
+	opacity: .5;
+}
+.option-disabled:hover {
+	opacity: .5;
+	background: none;
+	color: #000;
+	cursor: default;
+}
         </style>
     </head>
 
@@ -493,24 +616,24 @@
                             RnD</span>
                     </a>
                     <div class="nav_list">
-                    <a href="{{ route('dashboard') }}" class="nav_link active">
-                        <img src="../assets/foto/homee.svg" alt="">
-                        <span class="nav_name">Dashboard</span>
-                    </a><a href="{{ route('feeds') }}" class="nav_link">
-                        <img src="../assets/foto/feeds.svg" alt="">
-                        <span class="nav_name">Feeds</span> </a>
-                    <a href="{{ route('project') }}" class="nav_link">
-                        <img src="../assets/foto/carbon_collaborate.svg" alt="">
-                        <span class="nav_name">Collaboration</span>
-                    </a> <a href="{{ route('event') }}" class="nav_link">
-                        <img src="../assets/foto/calander.svg" alt="">
-                        <span class="nav_name">Calendar</span>
-                    </a> <a href="{{ route('profile') }}" class="nav_link">
-                        <img src="../assets/foto/User2.svg" alt="">
-                        <span class="nav_name">Profile</span>
-                    </a>
-
-                </div>
+                        <a href="{{ route('dashboard') }}" class="nav_link active">
+                            <img src="../assets/foto/homee.svg" alt="">
+                            <span class="nav_name">Dashboard</span>
+                        </a>
+                        </a> <a href="{{ route('feeds') }}" class="nav_link">
+                            <img src="../assets/foto/feeds.svg" alt="">
+                            <span class="nav_name">Feeds</span> </a>
+                        <a href="{{ route('project') }}" class="nav_link">
+                            <img src="../assets/foto/carbon_collaborate.svg" alt="">
+                            <span class="nav_name">Collaboration</span>
+                        </a> <a href="{{ route('event') }}" class="nav_link">
+                            <img src="../assets/foto/calander.svg" alt="">
+                            <span class="nav_name">Calendar</span>
+                        </a> <a href="{{ route('profile') }}" class="nav_link">
+                            <img src="../assets/foto/User2.svg" alt="">
+                            <span class="nav_name">Profile</span>
+                        </a>
+                    </div>
 
                 </div>
                 <a href="#" class="nav_link">
@@ -520,6 +643,43 @@
             </nav>
         </div>
 
+<!-- modal add event -->
+<div id="exampleModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="headerAdd">Add Feed</h5>
+            </div>
+            <form action="/feeds" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Title</label>
+                        <input type="text" class="form-control" name="Enter Title" placeholder="Enter Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Content</label>
+                        <input type="text" class="form-control" name="Content" placeholder="Enter Content">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Researcher</label>
+                                    <select class="form-control multiple-select" multiple>
+                                        <option>Choi Yeonjun</option>
+                                        <option>Choi Soobin</option>
+                                        <option>Geto Suguru</option>
+                                        <option>Miles Morales</option>
+                                        <option>Gwen Stacy</option>
+                                    </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn">Submit</button>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+
         <!--Container Main start-->
         <div class="dashboard">
             <!---Feeds-->
@@ -528,7 +688,8 @@
                 <h3 style="text-align: center; font-family: 'Poppins', sans-serif; color: black;">FEEDS
                 </h3>
                 <div class="buttons col-md-11 text-right">
-                    <button type="button" class="btn btn-m" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">+ New Feed</button>
+                    <button type="button" class="btn btn-m" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        >+ New Feed</button>
                 </div>
                 <ul class="cards">
                     <li class="card">
@@ -662,7 +823,7 @@
                     if (toggle && nav && bodypd && headerpd) {
                         toggle.addEventListener('click', () => {
                             // show navbar
-                            nav.classList.toggle('show')
+                            nav.classList.toggle('showSideBar')
                             // change icon
                             toggle.classList.toggle('bx-x')
                             // add padding to body
@@ -697,24 +858,145 @@
         </script>
 
         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+            var exampleModal = document.getElementById('exampleModal')
+            exampleModal.addEventListener('show.bs.modal', function(event) {
+                // Button that triggered the modal
+                var button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                var recipient = button.getAttribute('data-bs-whatever')
+                // If necessary, you could initiate an AJAX request here
+                // and then do the updating in a callback.
+                //
+                // Update the modal's content.
+                var modalTitle = exampleModal.querySelector('.modal-title')
+                var modalBodyInput = exampleModal.querySelector('.modal-body input')
 
-var exampleModal = document.getElementById('exampleModal')
-exampleModal.addEventListener('show.bs.modal', function (event) {
-  // Button that triggered the modal
-  var button = event.relatedTarget
-  // Extract info from data-bs-* attributes
-  var recipient = button.getAttribute('data-bs-whatever')
-  // If necessary, you could initiate an AJAX request here
-  // and then do the updating in a callback.
-  //
-  // Update the modal's content.
-  var modalTitle = exampleModal.querySelector('.modal-title')
-  var modalBodyInput = exampleModal.querySelector('.modal-body input')
+            });
+        });
 
-  modalTitle.textContent = 'New message to ' + recipient
-  modalBodyInput.value = recipient
-});
+
         </script>
+
+        <script>$(function() {
+            $(".multiple-select").each(function() {
+                $(this).hide();
+                
+                var optionsArray = [],
+                    selectClasses = $(this).attr("class");
+                
+                $(this).find("option").each(function() {
+                    var optionObject = {};
+                    optionObject.text = $(this).text();
+                    optionObject.value = $(this).val();
+                    optionObject.class = $(this).attr("class");
+                    
+                    optionsArray.push(optionObject);
+                });
+                
+                var multipleSelectHtml = "<div class='multiple-select-container "+selectClasses+"'>"+
+                    "<ul class='multiple-select-choices'><li class='input'><input type='text' placeholder='Please select'></li></ul>"+
+                    "<div class='multiple-select-dropdown'><ul>";
+                
+                for (var i = 0; i < optionsArray.length; i++) {
+                    multipleSelectHtml += "<li class='"+optionsArray[i].class+"' data-value='"+optionsArray[i].value+"'>"+optionsArray[i].text+"</li>";
+                }
+                
+                multipleSelectHtml += "</ul></div></div>";
+                
+                $(multipleSelectHtml).insertAfter($(this));
+            });
+            
+            // Show dropdown when input is focused
+            $(".multiple-select-container").on("click", function() {
+                $(this).find(".multiple-select-dropdown").show();
+            });
+            
+            // Close dropdown when multi-select is out of focus
+            $(document).on("click", function(e) {
+                var $tgt = $(e.target);
+        
+                if (!$tgt.is(".multiple-select-dropdown li") && !$tgt.is(".multiple-select-container input") && !$tgt.is(".multiple-select-container") && !$tgt.is(".multiple-select-choices")) {
+                    $(".multiple-select-dropdown").hide();
+                }
+            });
+            
+            // Add item
+            $(document).on("click", ".multiple-select-dropdown li:not(.option-disabled)", function(e) {
+                e.preventDefault();
+                
+                var optionText = $(this).text(),
+                    optionValue = $(this).data("value"),
+                    optionClass = $(this).attr("class");
+                
+                $(this).addClass("option-disabled");
+                
+                // Add item to input
+                var thisInput = $(this).closest(".multiple-select-container").find(".input");
+                $("<li data-value='"+optionValue+"'>" + optionText + " <a href='#' class='remove-item'>&times;</a></li>").insertBefore(thisInput);
+                
+                // Get current value of select field
+                var currentValues = $(this).closest(".multiple-select-container").siblings("select").val();
+                
+                // Add values to select field
+                currentValues.push(optionValue);
+                
+                // Assign updated value to select field
+                $(this).closest(".multiple-select-container").siblings("select").val(currentValues);
+                
+                // Make choices active, remove input placeholder
+                $(".multiple-select-choices li").addClass("choice-active");
+                $(".multiple-select-choices li input").attr("placeholder","").focus();
+                
+                // Hide dropdown
+                $(this).closest(".multiple-select-dropdown").hide();
+                
+                $(document).trigger("multipleSelectItemAdded",[optionText,optionValue,optionClass]);
+            });
+            
+            // Remove item
+            $(document).on("click", ".multiple-select-choices li a", function() {
+                var optionText = $(this).closest("li").text(),
+                    optionValue = $(this).closest("li").data("value"),
+                    optionClass = $(this).closest("li").attr("class");
+                
+                // Re-enable option in dropdown
+                $(".multiple-select-dropdown li[data-value='"+optionValue+"']").removeClass("option-disabled");
+                
+                // Get current value of the select field
+                var currentValues = $(this).closest(".multiple-select-container").siblings("select").val();
+                
+                // If the removed item is in the select value, remove it
+                var index = currentValues.indexOf(optionValue);
+                
+                if (index > -1) {
+                    currentValues.splice(index,1);
+                }
+                
+                // Re-assign the new value to the select field
+                $(this).closest(".multiple-select-container").siblings("select").val(currentValues);
+                
+                // Return placeholder to input if no choices have been made
+                if (currentValues.length == 0) {
+                    $(this).closest(".multiple-select-choices").find(".input").removeClass("choice-active").find("input").attr("placeholder","Please select");
+                }
+                
+                // Remove item from choices
+                $(this).closest("li").remove();
+                
+                $(document).trigger("multipleSelectItemRemoved",[optionText,optionValue,optionClass]);
+            });
+            
+            //Detect item being added
+            $(document).on("multipleSelectItemAdded",function(e,optionText,optionValue,optionClass) {
+                console.log("item has been added");
+            });
+            
+            //Detect item being removed
+            $(document).on("multipleSelectItemRemoved",function(e,optionText,optionValue,optionClass) {
+                console.log("item has been removed");
+            });
+        });</script>
     </body>
 
 </html>

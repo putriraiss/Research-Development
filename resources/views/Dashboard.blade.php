@@ -30,415 +30,421 @@
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
         < script src = "{{ asset('js/jquery.min.js') }}" >
 
-    < script src = "{{ asset('js/jquery.min.js') }}" >
     </script>
 
 
     </script>
     <style>
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
 
-    .container {
-        max-width: 1400px;
-        padding: 0 15px;
-        margin: 0 auto;
-    }
+        .container {
+            max-width: 1400px;
+            padding: 0 15px;
+            margin: 0 auto;
+        }
 
-    h2 {
-        font-size: 32px;
-        margin-bottom: 1em;
-    }
+        h2 {
+            font-size: 32px;
+            margin-bottom: 1em;
+        }
 
-    .cards {
-        display: flex;
-        padding: 25px 0px;
-        list-style: none;
-        overflow-x: scroll;
-        -ms-scroll-snap-type: x mandatory;
-        scroll-snap-type: x mandatory;
-    }
+        a.custom-card,
+        a.custom-card:hover {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    .card {
-        display: flex;
-        flex-direction: column;
-        flex: 0 0 100%;
-        padding: 20px;
-        background: var(--white);
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
-        scroll-snap-align: start;
-        transition: all 0.2s;
-    }
+        .cards {
+            display: flex;
+            padding: 25px 0px;
+            list-style: none;
+            overflow-x: scroll;
+            -ms-scroll-snap-type: x mandatory;
+            scroll-snap-type: x mandatory;
+        }
 
-    .card:not(:last-child) {
-        margin-right: 10px;
-    }
-
-    .card:hover {
-        color: var(--white);
-        background: #BF5C1C;
-    }
-
-    .card .card-title {
-        font-size: 20px;
-    }
-
-    .card .card-content {
-        margin: 20px 0;
-        max-width: 85%;
-    }
-
-    .card .card-link-wrapper {
-        margin-top: auto;
-    }
-
-    .card .card-link {
-        display: inline-block;
-        text-decoration: none;
-        color: white;
-        background: var(--red);
-        padding: 6px 12px;
-        border-radius: 8px;
-        transition: background 0.2s;
-    }
-
-    .card:hover .card-link {
-        background: #BF5C1C;
-    }
-
-    .cards::-webkit-scrollbar {
-        height: 12px;
-    }
-
-    .cards::-webkit-scrollbar-thumb,
-    .cards::-webkit-scrollbar-track {
-        border-radius: 92px;
-    }
-
-    .cards::-webkit-scrollbar-thumb {
-        background: var(--darkred);
-    }
-
-    .cards::-webkit-scrollbar-track {
-        background: var(--thumb);
-    }
-
-    @media (min-width: 500px) {
         .card {
-            flex-basis: calc(50% - 10px);
+            display: flex;
+            flex-direction: column;
+            flex: 0 0 100%;
+            padding: 20px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+            scroll-snap-align: start;
+            transition: all 0.2s;
         }
 
         .card:not(:last-child) {
-            margin-right: 20px;
-        }
-    }
-
-    @media (min-width: 700px) {
-        .card {
-            flex-basis: calc(calc(100% / 3) - 20px);
+            margin-right: 10px;
         }
 
-        .card:not(:last-child) {
-            margin-right: 30px;
-        }
-    }
-
-    @media (min-width: 1100px) {
-        .card {
-            flex-basis: calc(25% - 30px);
+        .card:hover {
+            color: var(--white);
+            background: #BF5C1C;
         }
 
-        .card:not(:last-child) {
-            margin-right: 40px;
+        .card .card-title {
+            font-size: 20px;
         }
-    }
 
-    :root {
-        --red: #ef233c;
-        --darkred: #6A3A2B;
-        --platinum: #e5e5e5;
-        --black: #2b2d42;
-        --white: #fff;
-        --thumb: #edf2f4;
-    }
+        .card .card-content {
+            margin: 20px 0;
+            max-width: 85%;
+        }
 
-    /*Dashboard*/
-    .Dashboard {
-        background-color: #F7F7F7;
-    }
+        .card .card-link-wrapper {
+            margin-top: auto;
+        }
 
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: #F7F7F7;
-    }
+        .card .card-link {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background: var(--red);
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
 
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #F7F7F7;
-    }
+        .card:hover .card-link {
+            background: #BF5C1C;
+        }
 
-    /* SearchBox*/
-    .search-container {
-        display: flex;
-        align-items: center;
-    }
+        .cards::-webkit-scrollbar {
+            height: 12px;
+        }
 
-    /*.search-box {
+        .cards::-webkit-scrollbar-thumb,
+        .cards::-webkit-scrollbar-track {
+            border-radius: 92px;
+        }
+
+        .cards::-webkit-scrollbar-thumb {
+            background: var(--darkred);
+        }
+
+        .cards::-webkit-scrollbar-track {
+            background: var(--thumb);
+        }
+
+        @media (min-width: 500px) {
+            .card {
+                flex-basis: calc(50% - 10px);
+            }
+
+            .card:not(:last-child) {
+                margin-right: 20px;
+            }
+        }
+
+        @media (min-width: 700px) {
+            .card {
+                flex-basis: calc(calc(100% / 3) - 20px);
+            }
+
+            .card:not(:last-child) {
+                margin-right: 30px;
+            }
+        }
+
+        @media (min-width: 1100px) {
+            .card {
+                flex-basis: calc(25% - 30px);
+            }
+
+            .card:not(:last-child) {
+                margin-right: 40px;
+            }
+        }
+
+        :root {
+            --red: #ef233c;
+            --darkred: #6A3A2B;
+            --platinum: #e5e5e5;
+            --black: #2b2d42;
+            --white: #fff;
+            --thumb: #edf2f4;
+        }
+
+        /*Dashboard*/
+        .Dashboard {
+            background-color: #F7F7F7;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #F7F7F7;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #F7F7F7;
+        }
+
+        /* SearchBox*/
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        /*.search-box {
           padding: 8px 80px;
           margin-right: 8px;
           border: none;
           border-radius: 24px;
       }*/
-    .search-box {
-        padding: 8px 80px;
-        /* Menggunakan 10vw untuk membuat padding responsif */
-        margin-right: 8px;
-        border: none;
-        border-radius: 24px;
-        max-width: 300px;
-        /* Optional: Mengatur lebar maksimum search box */
-    }
+        .search-box {
+            padding: 8px 80px;
+            /* Menggunakan 10vw untuk membuat padding responsif */
+            margin-right: 8px;
+            border: none;
+            border-radius: 24px;
+            max-width: 300px;
+            /* Optional: Mengatur lebar maksimum search box */
+        }
 
-    .search-btn {
-        padding: 8px 12px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        background-color: #007bff;
-        /* Warna tombol dapat disesuaikan */
-        color: #fff;
-    }
+        .search-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #007bff;
+            /* Warna tombol dapat disesuaikan */
+            color: #fff;
+        }
 
-    .search-icon {
-        font-size: 1.5rem;
-        /* Sesuaikan ukuran ikon sesuai kebutuhan */
-        margin-right: 8px;
-        color: #007bff;
-        /* Warna ikon dapat disesuaikan */
-    }
+        .search-icon {
+            font-size: 1.5rem;
+            /* Sesuaikan ukuran ikon sesuai kebutuhan */
+            margin-right: 8px;
+            color: #007bff;
+            /* Warna ikon dapat disesuaikan */
+        }
 
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #F7F7F7;
-    }
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #F7F7F7;
+        }
 
-    @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
-    :root {
-        --header-height: 3rem;
-        --nav-width: 75px;
-        --first-color: #F7F7F7;
-        --first-color-light: #000000;
-        --white-color: #EFE0CA;
-        --body-font: 'Nunito', sans-serif;
-        --normal-font-size: 1rem;
-        --z-fixed: 100
-    }
+        :root {
+            --header-height: 3rem;
+            --nav-width: 75px;
+            --first-color: #F7F7F7;
+            --first-color-light: #000000;
+            --white-color: #EFE0CA;
+            --body-font: 'Nunito', sans-serif;
+            --normal-font-size: 1rem;
+            --z-fixed: 100
+        }
 
-    *,
-    ::before,
-    ::after {
-        box-sizing: border-box
-    }
+        *,
+        ::before,
+        ::after {
+            box-sizing: border-box
+        }
 
-    body {
-        position: relative;
-        margin: var(--header-height) 0 0 0;
-        padding: 0 0rem;
-        font-family: var(--body-font);
-        font-size: var(--normal-font-size);
-        transition: .5s
-    }
-
-    a {
-        text-decoration: none
-    }
-
-    .header {
-        width: 100%;
-        height: var(--header-height);
-        position: fixed;
-        top: 0;
-        left: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 1rem;
-        background-color: #F7F7F7;
-        z-index: var(--z-fixed);
-        transition: .5s
-    }
-
-    .header_toggle {
-        color: #000000;
-        font-size: 1.5rem;
-        cursor: pointer
-    }
-
-    .header_img {
-        width: 35px;
-        height: 35px;
-        display: flex;
-        justify-content: center;
-        border-radius: 50%;
-        overflow: hidden
-    }
-
-    .header_img img {
-        width: 40px
-    }
-
-    .l-navbar {
-        position: fixed;
-        top: 0;
-        left: -30%;
-        width: var(--nav-width);
-        height: 100vh;
-        background-color: var(--first-color);
-        padding: .5rem 1rem 0 0;
-        transition: .5s;
-        z-index: var(--z-fixed)
-    }
-
-    .nav {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        overflow: hidden
-    }
-
-    .nav_logo,
-    .nav_link {
-        display: grid;
-        grid-template-columns: max-content max-content;
-        align-items: center;
-        column-gap: 1rem;
-        padding: .5rem 0 .5rem 1.5rem
-    }
-
-    .nav_logo {
-        margin-bottom: 2rem
-    }
-
-    .nav_logo-icon {
-        font-size: 1.25rem;
-        color: var(--white-color)
-    }
-
-    .nav_logo-name {
-        color: #000000;
-        font-weight: 700
-    }
-
-    .nav_link {
-        position: relative;
-        color: var(--first-color-light);
-        margin-bottom: 1.5rem;
-        transition: .3s
-    }
-
-    .nav_link:hover {
-        color: var(--white-color)
-    }
-
-    .nav_icon {
-        font-size: 1.25rem
-    }
-
-    .show {
-        left: 0
-    }
-
-    .body-pd {
-        padding-left: calc(var(--nav-width) + 1rem)
-    }
-
-    .active {
-        color: var(--white-color)
-    }
-
-    .active::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 2px;
-        height: 32px;
-        background-color: var(--white-color)
-    }
-
-    .height-100 {
-        height: 100vh
-    }
-
-    @media screen and (min-width: 768px) {
         body {
-            margin: calc(var(--header-height) + 1rem) 0 0 0;
-            padding-left: calc(var(--nav-width) + 0rem)
+            position: relative;
+            margin: var(--header-height) 0 0 0;
+            padding: 0 0rem;
+            font-family: var(--body-font);
+            font-size: var(--normal-font-size);
+            transition: .5s
+        }
+
+        a {
+            text-decoration: none
         }
 
         .header {
-            height: calc(var(--header-height) + 1rem);
-            padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
-        }
-
-        .header_img {
-            width: 40px;
-            height: 40px
-        }
-
-        .header_img img {
-            width: 45px
-        }
-
-        .l-navbar {
+            width: 100%;
+            height: var(--header-height);
+            position: fixed;
+            top: 0;
             left: 0;
-            padding: 1rem 1rem 0 0
-        }
-
-        .show {
-            width: calc(var(--nav-width) + 188px)
-        }
-
-        .body-pd {
-            padding-left: calc(var(--nav-width) + 188px)
-        }
-
-        .header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            background-color: #F7F7F7;
+            z-index: var(--z-fixed);
+            transition: .5s
         }
 
         .header_toggle {
-            margin-right: 15px;
+            color: #000000;
+            font-size: 1.5rem;
+            cursor: pointer
         }
 
-        .search-container {
-            margin-right: -205px;
-        }
-
-        .header_user {
+        .header_img {
+            width: 35px;
+            height: 35px;
             display: flex;
-            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            overflow: hidden
         }
 
         .header_img img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 5px;
-            /* Jarak antara gambar dan nama */
+            width: 40px
         }
 
-        .user_name {
-            font-family: 'Poppins', sans-serif;
-            color: black;
-            font-size: 14px;
+        .l-navbar {
+            position: fixed;
+            top: 0;
+            left: -30%;
+            width: var(--nav-width);
+            height: 100vh;
+            background-color: var(--first-color);
+            padding: .5rem 1rem 0 0;
+            transition: .5s;
+            z-index: var(--z-fixed)
         }
 
-    }
+        .nav {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden
+        }
+
+        .nav_logo,
+        .nav_link {
+            display: grid;
+            grid-template-columns: max-content max-content;
+            align-items: center;
+            column-gap: 1rem;
+            padding: .5rem 0 .5rem 1.5rem
+        }
+
+        .nav_logo {
+            margin-bottom: 2rem
+        }
+
+        .nav_logo-icon {
+            font-size: 1.25rem;
+            color: var(--white-color)
+        }
+
+        .nav_logo-name {
+            color: #000000;
+            font-weight: 700
+        }
+
+        .nav_link {
+            position: relative;
+            color: var(--first-color-light);
+            margin-bottom: 1.5rem;
+            transition: .3s
+        }
+
+        .nav_link:hover {
+            color: var(--white-color)
+        }
+
+        .nav_icon {
+            font-size: 1.25rem
+        }
+
+        .show {
+            left: 0
+        }
+
+        .body-pd {
+            padding-left: calc(var(--nav-width) + 1rem)
+        }
+
+        .active {
+            color: var(--white-color)
+        }
+
+        .active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 2px;
+            height: 32px;
+            background-color: var(--white-color)
+        }
+
+        .height-100 {
+            height: 100vh
+        }
+
+        @media screen and (min-width: 768px) {
+            body {
+                margin: calc(var(--header-height) + 1rem) 0 0 0;
+                padding-left: calc(var(--nav-width) + 0rem)
+            }
+
+            .header {
+                height: calc(var(--header-height) + 1rem);
+                padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
+            }
+
+            .header_img {
+                width: 40px;
+                height: 40px
+            }
+
+            .header_img img {
+                width: 45px
+            }
+
+            .l-navbar {
+                left: 0;
+                padding: 1rem 1rem 0 0
+            }
+
+            .show {
+                width: calc(var(--nav-width) + 188px)
+            }
+
+            .body-pd {
+                padding-left: calc(var(--nav-width) + 188px)
+            }
+
+            .header {
+                display: flex;
+                align-items: center;
+            }
+
+            .header_toggle {
+                margin-right: 15px;
+            }
+
+            .search-container {
+                margin-right: -205px;
+            }
+
+            .header_user {
+                display: flex;
+                align-items: center;
+            }
+
+            .header_img img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 5px;
+                /* Jarak antara gambar dan nama */
+            }
+
+            .user_name {
+                font-family: 'Poppins', sans-serif;
+                color: black;
+                font-size: 14px;
+            }
+
+        }
+
     </style>
 </head>
 
@@ -490,11 +496,10 @@
                         <img src="../assets/foto/User2.svg" alt="">
                         <span class="nav_name">Profile</span>
                     </a>
-
                 </div>
 
             </div>
-            <a href="/" class="nav_link">
+            <a href="#" class="nav_link">
                 <img src="../assets/foto/logout.svg" alt="">
                 <span class="nav_name">Logout</span>
             </a>
@@ -586,46 +591,52 @@
             </h3>
             <ul class="cards">
                 <li class="card">
-                    <div style="width: 100%;">
-                        <img src="../assets/foto/berita.svg" alt="" style="width: 100%; max-width: 300px;">
-                        <div class="card-content">
-                            <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
-                                harum natus fuga et repellat in maiores</p>
+                    <a class="custom-card" href="{{ route('detail-feeds') }}">
+                        <div style="width: 100%;">
+                            <img src="../assets/foto/berita.svg" alt="" style="width: 100%; max-width: 300px;">
+                            <div class="card-content">
+                                <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
+                                    harum natus fuga et repellat in maiores</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                        <img src="../assets/foto/orangg.svg" alt="" style="margin-right: 10px;">
-                        <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
-                    </div>
+                        <div class="card-link-wrapper" style="display: flex; align-items: center;">
+                            <img src="../assets/foto/orangg.svg" alt="" style="margin-right: 10px;">
+                            <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
+                        </div>
+                    </a>
                 </li>
                 <li class="card">
-                    <div style="width: 100%;">
-                        <img src="../assets/foto/berita1.svg" alt="" style="width: 100%; max-width: 300px;">
-                        <div class="card-content">
-                            <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
-                                harum natus fuga et repellat in maiores</p>
+                    <a class="custom-card" href="{{ route('detail-feeds') }}">
+                        <div style="width: 100%;">
+                            <img src="../assets/foto/berita1.svg" alt="" style="width: 100%; max-width: 300px;">
+                            <div class="card-content">
+                                <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
+                                    harum natus fuga et repellat in maiores</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                        <img src="../assets/foto/orang2.svg" alt="" style="margin-right: 10px;">
-                        <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
-                    </div>
+                        <div class="card-link-wrapper" style="display: flex; align-items: center;">
+                            <img src="../assets/foto/orang2.svg" alt="" style="margin-right: 10px;">
+                            <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
+                        </div>
+                    </a>
                 </li>
                 <li class="card">
-                    <div style="width: 100%;">
-                        <img src="../assets/foto/berita2.svg" alt="" style="width: 100%; max-width: 300px;">
-                        <div class="card-content">
-                            <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
-                                harum natus fuga et repellat in maiores</p>
+                    <a class="custom-card" href="{{ route('detail-feeds') }}">
+                        <div style="width: 100%;">
+                            <img src="../assets/foto/berita2.svg" alt="" style="width: 100%; max-width: 300px;">
+                            <div class="card-content">
+                                <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam
+                                    harum natus fuga et repellat in maiores</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                        <img src="../assets/foto/orang3.svg" alt="" style="margin-right: 10px;">
-                        <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
-                    </div>
+                        <div class="card-link-wrapper" style="display: flex; align-items: center;">
+                            <img src="../assets/foto/orang3.svg" alt="" style="margin-right: 10px;">
+                            <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;">
+                        </div>
+                    </a>
                 </li>
                 <li class="card">
                     <div style="width: 100%;">
@@ -716,33 +727,6 @@
             });
         }
 
-    <script>
-    /** full calendar */
-    var calendarEl = document.getElementById('calendar');
-    if (calendarEl) {
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['dayGrid', 'timeGrid', 'list', 'bootstrap'],
-                timeZone: 'UTC',
-                themeSystem: 'bootstrap',
-                header: {
-                    left: 'today, prev, next',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-                },
-                buttonIcons: {
-                    prev: 'fe-arrow-left',
-                    next: 'fe-arrow-right',
-                    prevYear: 'left-double-arrow',
-                    nextYear: 'right-double-arrow'
-                },
-                weekNumbers: true,
-                eventLimit: true, // allow "more" link when too many events
-                events: 'https://fullcalendar.io/demo-events.json'
-            });
-            calendar.render();
-        });
-    }
     </script>
 
     <!--Container Main end-->
@@ -755,49 +739,51 @@
     <script type='text/javascript' src='#'></script>
     <script type='text/javascript' src='#'></script>
     <script type='text/javascript'>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        const showNavbar = (toggleId, navId, bodyId, headerId) => {
-            const toggle = document.getElementById(toggleId),
-                nav = document.getElementById(navId),
-                bodypd = document.getElementById(bodyId),
-                headerpd = document.getElementById(headerId)
+        document.addEventListener("DOMContentLoaded", function (event) {
+            const showNavbar = (toggleId, navId, bodyId, headerId) => {
+                const toggle = document.getElementById(toggleId),
+                    nav = document.getElementById(navId),
+                    bodypd = document.getElementById(bodyId),
+                    headerpd = document.getElementById(headerId)
 
-            // Validate that all variables exist
-            if (toggle && nav && bodypd && headerpd) {
-                toggle.addEventListener('click', () => {
-                    // show navbar
-                    nav.classList.toggle('show')
-                    // change icon
-                    toggle.classList.toggle('bx-x')
-                    // add padding to body
-                    bodypd.classList.toggle('body-pd')
-                    // add padding to header
-                    headerpd.classList.toggle('body-pd')
-                })
+                // Validate that all variables exist
+                if (toggle && nav && bodypd && headerpd) {
+                    toggle.addEventListener('click', () => {
+                        // show navbar
+                        nav.classList.toggle('show')
+                        // change icon
+                        toggle.classList.toggle('bx-x')
+                        // add padding to body
+                        bodypd.classList.toggle('body-pd')
+                        // add padding to header
+                        headerpd.classList.toggle('body-pd')
+                    })
+                }
             }
-        }
 
-        showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+            showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
 
-        /*===== LINK ACTIVE =====*/
-        const linkColor = document.querySelectorAll('.nav_link')
+            /*===== LINK ACTIVE =====*/
+            const linkColor = document.querySelectorAll('.nav_link')
 
-        function colorLink() {
-            if (linkColor) {
-                linkColor.forEach(l => l.classList.remove('active'))
-                this.classList.add('active')
+            function colorLink() {
+                if (linkColor) {
+                    linkColor.forEach(l => l.classList.remove('active'))
+                    this.classList.add('active')
+                }
             }
-        }
-        linkColor.forEach(l => l.addEventListener('click', colorLink))
+            linkColor.forEach(l => l.addEventListener('click', colorLink))
 
-        // Your code to run since DOM is loaded and ready
-    });
+            // Your code to run since DOM is loaded and ready
+        });
+
     </script>
     <script type='text/javascript'>
-    var myLink = document.querySelector('a[href="#"]');
-    myLink.addEventListener('click', function(e) {
-        e.preventDefault();
-    });
+        var myLink = document.querySelector('a[href="#"]');
+        myLink.addEventListener('click', function (e) {
+            e.preventDefault();
+        });
+
     </script>
 
 </body>
