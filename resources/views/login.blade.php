@@ -110,9 +110,10 @@
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <a href="/">
+                                            <a href="{{ route('dashboard') }}">
+                                                <!-- Mengarahkan ke route dashboard -->
                                                 <button class="btn btn-primary btn-block gradient-custom-2 mb-3"
-                                                    type="submit">Login</button>
+                                                    type="button">Login</button>
                                             </a>
                                         </div>
                                         <div class="forgot-password">

@@ -454,8 +454,10 @@
     }
 
     .project-card {
-        flex: 0 0 100%;
-        /* Set flex basis to 100% */
+        flex: 0 0 auto;
+        /* Mengembalikan ke pengaturan default */
+        max-width: 100%;
+        /* Memastikan lebar maksimum sesuai layar */
         height: auto;
         /* Remove width property */
         margin-right: 20px;
@@ -468,14 +470,12 @@
     }
 
     .project-description {
-        max-width: 100%;
-        /* Limit the width of the description */
+        white-space: normal;
+        /* Mengizinkan teks untuk melakukan wrapping */
         overflow: hidden;
-        /* Hide overflow content */
+        /* Tetap mengatur overflow agar tidak keluar */
         text-overflow: ellipsis;
-        /* Add ellipsis (...) for truncated text */
-        white-space: nowrap;
-        /* Prevent text from wrapping */
+        /* Menggunakan ellipsis jika ada overflow */
     }
 
     /* menghilangkan margin kanan pada card terakhir */
@@ -488,6 +488,8 @@
     .project-id,
     .project-description {
         text-align: justify;
+        word-wrap: break-word;
+        /* Memecah kata-kata panjang */
         /* Justify text alignment */
     }
 
@@ -499,6 +501,8 @@
     .project-id,
     .project-description {
         color: black;
+        word-wrap: break-word;
+        /* Memecah kata-kata panjang */
     }
     </style>
 </head>
@@ -527,9 +531,10 @@
                         RnD</span>
                 </a>
                 <div class="nav_list">
-                    <a href="{{ route('dashboard') }}" class="nav_link active">
+                    <<a href="{{ route('dashboard') }}" class="nav_link active">
                         <img src="../assets/foto/homee.svg" alt="">
                         <span class="nav_name">Dashboard</span>
+<<<<<<< HEAD
                     </a><a href="{{ route('feeds') }}" class="nav_link">
                         <img src="../assets/foto/feeds.svg" alt="">
                         <span class="nav_name">Feeds</span> </a>
@@ -543,11 +548,27 @@
                         <img src="../assets/foto/User2.svg" alt="">
                         <span class="nav_name">Profile</span>
                     </a>
+=======
+                        </a>
+                        </a> <a href="{{ route('feeds') }}" class="nav_link">
+                            <img src="../assets/foto/feeds.svg" alt="">
+                            <span class="nav_name">Feeds</span> </a>
+                        <a href="{{ route('project') }}" class="nav_link">
+                            <img src="../assets/foto/carbon_collaborate.svg" alt="">
+                            <span class="nav_name">Collaboration</span>
+                        </a> <a href="{{ route('event') }}" class="nav_link">
+                            <img src="../assets/foto/calander.svg" alt="">
+                            <span class="nav_name">Calendar</span>
+                        </a> <a href="{{ route('profile') }}" class="nav_link">
+                            <img src="../assets/foto/User2.svg" alt="">
+                            <span class="nav_name">Profile</span>
+                        </a>
+>>>>>>> 5a23dbf6df7a67e7f55f0fa4a348ef14e1392e7d
 
                 </div>
 
             </div>
-            <a href="#" class="nav_link">
+            <a href="/" class="nav_link">
                 <img src="../assets/foto/logout.svg" alt="">
                 <span class="nav_name">Logout</span>
             </a>
@@ -589,8 +610,8 @@
             <ul>
                 <div class="projects-container">
                     <div class="project-card">
-                        <h4 class="project-title">More Efficient Drilling Technology</h4>
-                        <p class="project-id"><strong class="subjudul">Project_ID: </strong><br>01</p>
+                        <h4 class="project-title"><u>More Efficient Drilling Technology</u></h4>
+                        <p class="project-id"><strong class="subjudul">Project_ID: </strong>01</p>
                         <p class="project-description"><strong class="subjudul">Description: </strong><br>The Head of
                             R&D plays a
                             pivotal role in steering this project, providing strategic vision,
@@ -604,8 +625,8 @@
                 </div>
                 <div class="projects-container">
                     <div class="project-card">
-                        <h4 class="project-title">New Research in Carbon Storage</h4>
-                        <p class="project-id"><strong class="subjudul">Project_ID: </strong><br>014</p>
+                        <h4 class="project-title"><u>New Research in Carbon Storage</u></h4>
+                        <p class="project-id"><strong class="subjudul">Project_ID: </strong>014</p>
                         <p class="project-description"><strong class="subjudul">Description: </strong><br>
                             Responsible for the strategic direction and development of technologies that can transform
                             the way the company handles carbon storage, with a focus on innovation,
@@ -702,7 +723,7 @@
     }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    
+
 </body>
 
 </html>
