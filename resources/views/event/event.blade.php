@@ -451,6 +451,7 @@
             background-color: #BF5C1C !important;
         }
 
+        
         .modal-dialog {
             width: 512px;
             height: max-content;
@@ -466,6 +467,8 @@
             font-weight: 600;
             line-height: normal;
         }
+
+
 
         .modal-body {
             color: #4F4F4F;
@@ -502,14 +505,40 @@
             justify-content: space-between;
         }
 
-        .btn-submit {
+        .btn {
             background-color: #BF5C1C;
             color: #FFF;
+            border: var(--white);
+        }
+
+        .btn:hover {
+            color: #BF5C1C;
+            background-color: var(--white);
         }
 
         .bi {
             margin-right: 15px;
             color: #854836;
+        }
+
+        .modal-btn {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 12px;
+            margin-right: 6px;
+        }
+
+        .modal-btn button {
+            width: 30px;
+            height: 30px;
+            background-color: var(--white);
+            border: none;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .modal-btn button:hover {
+            background-color: var(--white-color);
         }
 
         .modal-body h5 {
@@ -550,23 +579,19 @@
                     <a href="{{ route('dashboard') }}" class="nav_link active">
                         <img src="../assets/foto/homee.svg" alt="">
                         <span class="nav_name">Dashboard</span>
-                    </a> <a href="#" class="nav_link">
-                        <img src="../assets/foto/progres.svg" alt="">
-                        <span class="nav_name">Progres</span>
-                    </a> <a href="{{ route('feeds') }}" class="nav_link">
+                    </a><a href="{{ route('feeds') }}" class="nav_link">
                         <img src="../assets/foto/feeds.svg" alt="">
                         <span class="nav_name">Feeds</span> </a>
-                    <a href="#" class="nav_link">
+                    <a href="{{ route('project') }}" class="nav_link">
                         <img src="../assets/foto/carbon_collaborate.svg" alt="">
                         <span class="nav_name">Collaboration</span>
-                    </a> <a href="{{ route('event') }}" class="nav_link"> <!-- belum bisa ngelink -->
+                    </a> <a href="{{ route('event') }}" class="nav_link">
                         <img src="../assets/foto/calander.svg" alt="">
                         <span class="nav_name">Calendar</span>
-                    </a> <a href="#" class="nav_link">
+                    </a> <a href="{{ route('profile') }}" class="nav_link">
                         <img src="../assets/foto/User2.svg" alt="">
                         <span class="nav_name">Profile</span>
                     </a>
-
                 </div>
 
             </div>
@@ -631,12 +656,113 @@
         </div>
     </div>
 
+    <div id="modal-editEvent" class="modal fade" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5" id="headerAdd">Edit Event</h5>
+                </div>
+                <form action="/event" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Event Name</label>
+                            <input type="text" class="form-control" name="Event Name" placeholder="Event Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Event Description</label>
+                            <input type="text" class="form-control" name="Event Description" placeholder="Event Description">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Event Location</label>
+                            <input type="text" class="form-control" name="Event Location" placeholder="Event Location">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                All Day
+                            </label>
+                        </div>
+
+                        <br>
+                        <div class="form-date">
+                            <div class="form-group">
+                                <label for="">Event Start Date</label>
+                                <input type="datetime-local" class="form-control" name="Event Start Date">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Event End Date</label>
+                                <input type="datetime-local" class="form-control" name="Event End Date">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-submit">Edit</button>
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- modal delete -->
+    <div id="modal-deleteEvent" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-deleteEvent" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-deleteEvent">Warning!</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal-Success">Delete</button>
+                    <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- modal 3 --}}
+    <div id="modal-Success" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="modal-Success" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-Success">New message</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="check">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="#BF5C1C" class="bi bi-check" viewBox="0 0 16 16" style="width: 100%; max-width: 100px;">
+                            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                        </svg>
+                    </div>
+                    <p>Successfully deleted!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- modal detail event -->
     <div id="modal-detailEvent" class="modal fade" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-btn">
+                    <button type="button" class="btn-delete" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal-deleteEvent" aria-label="Delete">
+                        <i class="bi bi-trash3-fill"></i>
+                    </button>
+                    <button type="button" class="btn-edit" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal-editEvent" aria-label="Edit">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="bi bi-x"></i>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="modal-event">
@@ -682,7 +808,6 @@
                             btnAddEvent: {
                                 text: '+ Add Event',
                                 click: function() {
-                                    //alert('clicked custom button 2!');
                                     $('#modal-addEvent').modal('show')
                                 }
                             }
