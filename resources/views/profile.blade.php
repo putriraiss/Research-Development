@@ -527,30 +527,28 @@
                         RnD</span>
                 </a>
                 <div class="nav_list">
-                    <a href="{{ route('dashboard') }}" class="nav_link active">
+                    <<a href="{{ route('dashboard') }}" class="nav_link active">
                         <img src="../assets/foto/homee.svg" alt="">
                         <span class="nav_name">Dashboard</span>
-                    </a> <a href="#" class="nav_link">
-                        <img src="../assets/foto/progres.svg" alt="">
-                        <span class="nav_name">Progres</span>
-                    </a> <a href="{{ route('feeds') }}" class="nav_link">
-                        <img src="../assets/foto/feeds.svg" alt="">
-                        <span class="nav_name">Feeds</span> </a>
-                    <a href="#" class="nav_link">
-                        <img src="../assets/foto/carbon_collaborate.svg" alt="">
-                        <span class="nav_name">Collaboration</span>
-                    </a> <a href="#" class="nav_link">
-                        <img src="../assets/foto/calander.svg" alt="">
-                        <span class="nav_name">Calendar</span>
-                    </a> <a href="{{ route('profile') }}" class="nav_link">
-                        <img src="../assets/foto/User2.svg" alt="">
-                        <span class="nav_name">Profile</span>
-                    </a>
+                        </a>
+                        </a> <a href="{{ route('feeds') }}" class="nav_link">
+                            <img src="../assets/foto/feeds.svg" alt="">
+                            <span class="nav_name">Feeds</span> </a>
+                        <a href="{{ route('project') }}" class="nav_link">
+                            <img src="../assets/foto/carbon_collaborate.svg" alt="">
+                            <span class="nav_name">Collaboration</span>
+                        </a> <a href="{{ route('event') }}" class="nav_link">
+                            <img src="../assets/foto/calander.svg" alt="">
+                            <span class="nav_name">Calendar</span>
+                        </a> <a href="{{ route('profile') }}" class="nav_link">
+                            <img src="../assets/foto/User2.svg" alt="">
+                            <span class="nav_name">Profile</span>
+                        </a>
 
                 </div>
 
             </div>
-            <a href="#" class="nav_link">
+            <a href="/" class="nav_link">
                 <img src="../assets/foto/logout.svg" alt="">
                 <span class="nav_name">Logout</span>
             </a>
@@ -705,7 +703,7 @@
     }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    
+
 </body>
 
 </html>

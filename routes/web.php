@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/login', 'login')->name('login');
+Route::view('/', 'login')->name('login');
 
-Route::view('/', 'Dashboard')->name('dashboard');
+Route::view('/dashboard', 'Dashboard')->name('dashboard');
 
 Route::view('/profile', 'profile')->name('profile');
 
