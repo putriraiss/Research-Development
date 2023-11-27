@@ -547,6 +547,23 @@
                 color: #2b2d42;
             }
 
+            .image-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  margin-top: -35px;
+  right: 30px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+}
+
+.button-image {
+  width: 100%;
+  height: 100%;
+}
+
             .th-tengah {
                 margin-bottom: 25px;
                 color: #BF5C1C
@@ -652,7 +669,10 @@
                 <div style="display: flex; align-items: center;">
                     <h3 class="title" style="text-align: left; margin-left: 8px; font-family: 'Poppins', sans-serif; font-weight:bold;color:#4f4f4f;">
                         Projects</h3>
-                    <img src="../assets/foto/new-add.png" class="hover-pointer" style="margin-left: auto; margin-top: -35px; right: 30px;width:30px;height:30px;">
+                        <button class="image-button" data-toggle="modal" data-target="#createProjectModal" data-bs-whatever="Some Data">
+                            <img src="../assets/foto/new-add.png" class="button-image">
+                        </button>
+                    {{-- <img src="../assets/foto/new-add.png" class="hover-pointer" style="margin-left: auto; margin-top: -35px; right: 30px;width:30px;height:30px;"> --}}
                 </div>
                 <ul class="cards">
                     <li class="card">
@@ -664,7 +684,8 @@
                             </div>
                         </div>
                         <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                            <img src="../assets/foto/menu-dot.png" alt="" style="margin-left: auto; margin-top: 0; position: absolute; top: 19px; right: 30px;">
+                            
+                            {{-- <img src="../assets/foto/menu-dot.png" alt="" style="margin-left: auto; margin-top: 0; position: absolute; top: 19px; right: 30px;"> --}}
                         </div>
                     </li>
                     <li class="card">
@@ -715,7 +736,10 @@
                     responsible and sustainable mining practices.</p>
                 <div style="display: flex; align-items: center;">
                     <h4 class="semi-title" style="color:#4f4f4f; margin-bottom:35px;margin-top: 40px;font-size:18px;font-weight:bold">Tasks</h4>
-                    <img src="../assets/foto/new-add.png" id="add-task" alt="" style="margin-left: auto; margin-right:15px;margin-top: 20px; right: 30px;width:30px;height:30px;">
+                    {{-- <img src="../assets/foto/new-add.png" id="add-task" alt="" style="margin-left: auto; margin-right:15px;margin-top: 20px; right: 30px;width:30px;height:30px;"> --}}
+                    <button class="image-button" data-toggle="modal" data-target="#createProjectModal" data-bs-whatever="Some Data" style="margin-left: auto; margin-right:15px;margin-top: 20px; right: 30px;width:30px;height:30px;">
+                        <img src="../assets/foto/new-add.png" class="button-image">
+                      </button>
                 </div>
                 <div class="card-task" style="margin-left: 8px; margin-right: 15px; padding: 20px; position: relative;">
                     <div class="badge badge-primary" style="background-color: #BF5C1C; color: #FFFFFF; margin-bottom: 15px;">Research</div>
