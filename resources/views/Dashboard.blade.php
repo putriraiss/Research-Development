@@ -499,7 +499,7 @@
                 </div>
 
             </div>
-            <a href="#" class="nav_link">
+            <a href="/" class="nav_link">
                 <img src="../assets/foto/logout.svg" alt="">
                 <span class="nav_name">Logout</span>
             </a>

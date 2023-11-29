@@ -576,9 +576,6 @@
                     <i class="fas fa-times"></i> <!-- Font Awesome "x" icon -->
                 </span>
                 <h2>Edit Profile</h2>
-                <label for="newProfilePic">New Profile Picture:</label>
-                <input type="file" id="newProfilePic">
-                <br>
                 <label for="newEmail">New Email:</label>
                 <input type="email" id="newEmail">
                 <button class="save-button" onclick="saveChanges()">Save</button>
