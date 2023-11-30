@@ -148,7 +148,7 @@
         var email = document.getElementById("form2Example11").value;
         var password = document.getElementById("form2Example22").value;
 
-        if (email === "" || password === "") {
+        if (email === "" && password === "") {
             alert("Please enter both email and password");
             return false;
         }

@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Feeds</title>
+    <title>Projects</title>
     <!-- Simple bar CSS -->
     <link href="{{ asset('assets/css/simplebar.css') }}" rel="stylesheet">
     <!-- Fonts CSS -->
@@ -664,35 +664,29 @@
     </div>
 
     <!-- modal add event -->
-    <div id="exampleModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fs-5" id="headerAdd">Add Feed</h5>
+                    <h5 class="modal-title fs-5" id="headerAdd">Add Project</h5>
                 </div>
-                <form action="{{ route('feeds.store') }}" method="POST">
+                <form action="{{ route('projects.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="">Title</label>
-                            <input type="text" class="form-control" name="title" placeholder="title" required>
+                            <label for="">Nama Project</label>
+                            <input type="text" class="form-control" name="nama" placeholder="nama" required>
                         </div>
                         <div class="form-group">
                             <label for="">Content</label>
-                            <input type="text" class="form-control" name="content" placeholder="content" required>
+                            <input type="text" class="form-control" name="desc" placeholder="deskripsi" required>
                         </div>
                         <div class="form-group">
-                            <label for="">Image</label>
-                            <input type="text" class="form-control" name="image" placeholder="image">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Researcher</label>
-                            <select class="form-control" name="nip" required>
-                                <option selected>Pilih Karyawan!</option>
-                                @foreach ($karyawans as $karyawan)
-                                @if ($karyawan->asal_devisi == 'R&D')
-                                <option value="{{ $karyawan->nip }}">{{ $karyawan->nama_lengkap }}</option>
-                                @endif
+                            <label for="">Task</label>
+                            <select class="form-control" name="task_id" required>
+                                <option selected>Pilih Task!</option>
+                                @foreach ($tasks as $task)
+                                    <option value="{{ $task->id_task }}">{{ $task->nama_task }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -705,43 +699,6 @@
             </form>
         </div>
     </div>
-
-    <!--Container Main start-->
-    <div class="dashboard">
-        <!---Feeds-->
-        <div class="container">
-
-            <h3 style="text-align: center; font-family: 'Poppins', sans-serif; color: black;">FEEDS
-            </h3>
-            <div class="buttons col-md-11 text-right">
-                <button type="button" class="btn btn-m" data-bs-toggle="modal" data-bs-target="#exampleModal">+ New
-                    Feed</button>
-            </div>
-            <ul class="cards">
-                @foreach ($feeds as $feed)
-                <li class="card">
-                    <a class="custom-card" href="{{ route('feeds.show', $feed->id_feed) }}">
-                        <div style="width: 100%;">
-                            <img src="{{ $feed->img }}" alt="image" style="width: 100%; max-width: 300px;">
-                            <div class="card-content">
-                                <h6>{{ $feed->title }}</h6>
-                                <p>{{ $feed->desc_feed }}</p>
-                            </div>
-                        </div>
-                        <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                            <img id="pp" src="{{ $feed->karyawan->foto_profil }}" alt="photo profile"
-                                style="margin-right: 10px;" width="30" height="30">
-                            {{-- <img src="../assets/foto/orangg.svg" alt="" style="margin-right: 10px;"> --}}
-                            {{-- <img src="../assets/foto/komen.svg" alt="" style="margin-left: auto;"> --}}
-                        </div>
-                    </a>
-                </li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
-
-    <!--Container Main end-->
 
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script type='text/javascript'

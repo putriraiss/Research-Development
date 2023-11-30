@@ -614,10 +614,10 @@
                             <img src="../assets/foto/homee.svg" alt="">
                             <span class="nav_name">Dashboard</span>
                         </a>
-                        </a> <a href="{{ route('feeds') }}" class="nav_link">
+                        </a> <a href="{{ route('feeds.index') }}" class="nav_link">
                             <img src="../assets/foto/feeds.svg" alt="">
                             <span class="nav_name">Feeds</span> </a>
-                        <a href="{{ route('project') }}" class="nav_link">
+                        <a href="{{ route('projects.show', 1) }}" class="nav_link">
                             <img src="../assets/foto/carbon_collaborate.svg" alt="">
                             <span class="nav_name">Collaboration</span>
                         </a> <a href="{{ route('event') }}" class="nav_link">
@@ -645,9 +645,7 @@
                         style="margin-top: 20px; background:#F3E9D9;
                         ">
                         <h4 style="font-family: 'Poppins', sans-serif; color: black; margin:10px"> <span
-                                style="color: #BF5C1C">|</span> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Voluptates possimus laborum molestias? Nemo voluptas fuga iure similique maiores magni culpa
-                            architecto tempora doloremque, aliquam harum?</h4>
+                                style="color: #BF5C1C">|</span> {{ $feed->title }}</h4>
                     </div>
                     <div class="col-sm-1 text-right" style="margin-top: 20px">
                         <div class="dropdown">
@@ -662,8 +660,15 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal1">Edit</a></li>
-                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal2">Delete</a></li>
+                                <li>
+                                    <form action="{{ route('feeds.destroy', $feed->id_feed) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="dropdown-item" type="submit">delete</button>
+                                    </form>
+                                    {{-- <a class="dropdown-item" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal2">Delete</a> --}}
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -672,35 +677,21 @@
 
             <div class="card">
                 <div class="image-container">
-                    <img src="../assets/foto/berita.svg" alt="" style="width: 100%; max-width: 1000px;">
+                    <img src="{{ $feed->img }}" alt="image" style="width: 100%; max-width: 1000px;">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-sm-6">
                             <figcaption class="figure-caption custom-caption-left"
                                 style="text-align:left; padding-top:20px; padding-left:50px">
-                                Written by: Shoko Ieri, Geto Suguru</figcaption>
+                                Written by: {{ $karyawan->nama_lengkap }}</figcaption>
                         </div>
                         <div class="col-sm-6 text-right">
-                            <figcaption class="figure-caption custom-caption-right"
+                            {{-- <figcaption class="figure-caption custom-caption-right"
                                 style="text-align:right;padding-top:20px; padding-right:50px">
-                                Thursday, 26 October 2023</figcaption>
+                                Thursday, 26 October 2023</figcaption> --}}
                         </div>
 
                         <div class="card-content">
-                            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui similique ullam animi
-                                quisquam
-                                illum distinctio iure et sed inventore quae, pariatur vitae, reiciendis fugiat aliquam
-                                ipsa
-                                debitis fugit assumenda quidem nostrum commodi quasi. Officiis et laborum neque. Nulla
-                                consequuntur quisquam commodi praesentium delectus voluptatum? Assumenda ut nostrum
-                                aliquid
-                                dignissimos adipisci, temporibus iusto. Tempore eveniet odio culpa a animi magni vero
-                                reiciendis unde. Fugiat eveniet, nobis assumenda a earum quo ducimus delectus dolore
-                                provident facere incidunt ab iure sequi animi tenetur omnis ut beatae eos nihil sed.
-                                Vero,
-                                fuga quia! Reiciendis necessitatibus labore optio alias voluptatum, ipsa adipisci dolor
-                                qui
-                                asperiores.
-                            </p>
+                            <p>{{ $feed->desc_feed }}</p>
                         </div>
                     </div>
 
@@ -715,26 +706,42 @@
                                 <div class="modal-header">
                                     <h5 class="modal-title fs-5" id="headerAdd">Edit Feed</h5>
                                 </div>
-                                <form action="/feeds" method="POST">
+                                <form action="{{ route('feeds.update', $feed->id_feed) }}" method="POST">
+                                    @csrf
+                                    @method('put')
                                     <div class="modal-body">
                                         <div class="form-group">
+
                                             <label>Title</label>
-                                            <input type="text" class="form-control" name="Enter Title"
-                                                placeholder="Enter Title">
+                                            <input type="text" class="form-control" name="title"
+                                                placeholder="Enter Title" value="{{ $feed->title }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Content</label>
-                                            <input type="text" class="form-control" name="Content"
-                                                placeholder="Enter Content">
+                                            <input type="text" class="form-control" name="content"
+                                                placeholder="Enter Content" value="{{ $feed->desc_feed }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Image</label>
+                                            <input type="text" class="form-control" name="image"
+                                                placeholder="Enter Content" value="{{ $feed->img }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Researcher</label>
-                                            <select class="form-control multiple-select" multiple>
-                                                <option>Choi Yeonjun</option>
-                                                <option>Choi Soobin</option>
+                                            <select class="form-control" name="nip">
+                                                <option value="{{ $feed->karyawan_nip }}">{{ $feed->karyawan->nama_lengkap }}</option>
+                                                @foreach ($allKaryawan as $karyawan)
+                                                    @if ($karyawan->asal_devisi == 'R&D')
+                                                        @if ($karyawan->nama_lengkap != $feed->karyawan->nama_lengkap)
+                                                        <option value="{{ $karyawan->nip }}">{{ $karyawan->nama_lengkap }}</option>
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+
+                                                {{-- <option>Choi Soobin</option>
                                                 <option>Geto Suguru</option>
                                                 <option>Miles Morales</option>
-                                                <option>Gwen Stacy</option>
+                                                <option>Gwen Stacy</option> --}}
                                             </select>
                                         </div>
                                     </div>
@@ -763,8 +770,12 @@
                                     <p>Are you sure you want to delete?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn" data-bs-dismiss="modal"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal3">Delete</button>
+                                    <form action="{{ route('feeds.destroy', $feed->id_feed) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn" data-bs-dismiss="modal"
+                                            data-bs-toggle="modal">Delete</button>
+                                    </form>
                                     <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
@@ -890,18 +901,18 @@
                             modalBodyInput.value = recipient
                         });
 
-                        exampleModal3.addEventListener('show.bs.modal', function(event) {
-                            // Button that triggered the modal
-                            var button = event.relatedTarget
-                            // Extract info from data-bs-* attributes
-                            var recipient = button.getAttribute('data-bs-whatever')
-                            // If necessary, you could initiate an AJAX request here
-                            // and then do the updating in a callback.
-                            //
-                            // Update the modal's content.
-                            var modalTitle = exampleModalLabel2.querySelector('.modal-title')
-                            var modalBodyInput = exampleModalLabel2.querySelector('.modal-body input')
-                        });
+                        // exampleModal3.addEventListener('show.bs.modal', function(event) {
+                        //     // Button that triggered the modal
+                        //     var button = event.relatedTarget
+                        //     // Extract info from data-bs-* attributes
+                        //     var recipient = button.getAttribute('data-bs-whatever')
+                        //     // If necessary, you could initiate an AJAX request here
+                        //     // and then do the updating in a callback.
+                        //     //
+                        //     // Update the modal's content.
+                        //     var modalTitle = exampleModalLabel2.querySelector('.modal-title')
+                        //     var modalBodyInput = exampleModalLabel2.querySelector('.modal-body input')
+                        // });
                     </script>
 
 

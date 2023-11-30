@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Projects;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -20,22 +20,27 @@ class ProjectsController extends Controller
     }
 
     //
-    public function create(Request $request)
+    public function store(Request $request)
     {
-        $Projects = Projects::with('tasks')->create($request->all());
+        $this->storeData('project', [
+            'tasks_RND_id_task'=>$request->task_id,
+            'nama_proj'=>$request->nama,
+            'desc_proj'=>$request->desc,
+        ]);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'New Data created',
-            'data' => [
-                'Projects' => $Projects
-            ]
+        return redirect()->route('projects.show', 1);   
+    }
+    public function create()
+    {
+        $tasks = $this->getData('task')->tasks;
+        return view('project.create', [
+            'tasks'=>$tasks
         ]);
     }
 
     public function getAll()
     {
-        $Projects = Projects::with('tasks')->get();
+        $Projects = Project::with('tasks')->get();
         if (!$Projects) {
             return response()->json([
                 'success' => false,
@@ -55,65 +60,43 @@ class ProjectsController extends Controller
         );
     }
 
-    public function getid($id_proj)
+    public function show(string $id)
     {
-        $Projects = Projects::with('tasks')->find($id_proj);
+        $projects = $this->getData('project')->Projects;
+        $projectDetail = $this->getData("project/$id")->Projects;
+        $idKaryawan = $projectDetail->tasks->karyawan_nip;
+        $karyawan = $this->getData("karyawan/$idKaryawan")->karyawan
+        ;
 
-        if (!$Projects) {
-            return response()->json([
-                'success' => false,
-                'message' => 'storage not found',
-                'data' => null
-            ], 404);
-        }
-
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'Projects' => $Projects
-            ]
+        return view('project.project', [
+            'projects'=>$projects,
+            'projectDetail'=>$projectDetail,
+            'karyawan'=>$karyawan,
         ]);
     }
 
-    public function update(Request $request, $id_proj)
-    {
-        $Projects = Projects::with('tasks')->find($id_proj);
-
-        if (!$Projects) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Data not found',
-                'data' => null
-            ], 404);
-        }
-
-        $Projects->update($request->all());
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data updated',
-            'data' => [
-                'Projects' => $Projects
-            ]
+    public function edit(string $id) {
+        $project = $this->getData("project/$id")->Projects;
+        $tasks = $this->getData('task')->tasks;
+        return view('project.edit', [
+            'project'=>$project,
+            'tasks'=>$tasks
         ]);
     }
 
-    public function delete(Request $request)
+    public function update(Request $request, $id)
     {
-        $Projects = Projects::find($request->id_proj);
-
-        if (!$Projects) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Data not found',
-            ], 404);
-        }
-
-        $Projects->delete();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data deleted successfully',
+        $this->updateData("project/$id", [
+            'tasks_RND_id_task'=>$request->task_id,
+            'nama_proj'=>$request->nama,
+            'desc_proj'=>$request->desc,
         ]);
+        return redirect()->route('projects.show',1);
+    }
+
+    public function destroy(string $id)
+    {
+        $this->deleteData("project/$id");
+        return redirect()->route('projects.show', 1);
     }
 }

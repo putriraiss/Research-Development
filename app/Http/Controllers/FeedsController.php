@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feed;
 use App\Models\Feeds;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -20,100 +22,58 @@ class FeedsController extends Controller
     }
 
     //
-    public function create(Request $request)
+    public function store(Request $request)
     {
-        $Feeds = Feeds::with('karyawan')->create($request->all());
+        $this->storeData("feed", [
+            'karyawan_nip'=>$request->nip,
+            'title'=>$request->title,
+            'desc_feed'=>$request->content,
+            'img'=>$request->image
+        ]);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'New Data created',
-            'data' => [
-                'Feeds' => $Feeds
-            ]
+        return redirect()->route('feeds.index');
+    }
+
+    public function index()
+    {
+        $feeds = $this->getData('feed')->Feeds;
+        $karyawans = $this->getData("karyawan")->karyawan;
+
+        return view('feeds.feeds', [
+            'feeds'=>$feeds,
+            'karyawans'=>$karyawans
         ]);
     }
 
-    public function getAll()
+    public function show(String $id)
     {
-        $Feeds = Feeds::with('karyawan')->get();
-        if (!$Feeds) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Data not found',
-                'data' => null
-            ], 404);
-        }
+        $feed = $this->getData("feed/$id")->Feeds;
+        $karyawan = $this->getData("karyawan/$feed->karyawan_nip")->karyawan;
+        $allKaryawan = $this->getData("karyawan")->karyawan;
 
-        return response()->json(
-            [
-                'success' => true,
-                'message' => 'All Data grabbed',
-                'data' => [
-                    'Feeds' => $Feeds
-                ]
-            ]
-        );
-    }
-
-    public function getid($id_feed)
-    {
-        $Feeds = Feeds::with('karyawan')->find($id_feed);
-
-        if (!$Feeds) {
-            return response()->json([
-                'success' => false,
-                'message' => 'storage not found',
-                'data' => null
-            ], 404);
-        }
-
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'Feeds' => $Feeds
-            ]
+        return view('feeds.detail', [
+            'feed'=>$feed,
+            'karyawan'=>$karyawan,
+            'allKaryawan'=>$allKaryawan
         ]);
     }
 
-    public function update(Request $request, $id_feed)
+    public function update(Request $request, $id)
     {
-        $Feeds = Feeds::with('karyawan')->find($id_feed);
-
-        if (!$Feeds) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Data not found',
-                'data' => null
-            ], 404);
-        }
-
-        $Feeds->update($request->all());
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data updated',
-            'data' => [
-                'Feeds' => $Feeds
-            ]
+        $this->updateData("feed/$id", [
+            'karyawan_nip'=>$request->nip,
+            'title'=>$request->title,
+            'desc_feed'=>$request->content,
+            'img'=>$request->image
         ]);
+
+        return redirect()->route('feeds.index');
     }
 
-    public function delete(Request $request)
+    public function destroy(string $id)
     {
-        $Feeds = Feeds::find($request->id_feed);
+        $this->deleteData("feed/$id");
 
-        if (!$Feeds) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Data not found',
-            ], 404);
-        }
-
-        $Feeds->delete();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data deleted successfully',
-        ]);
+        return redirect()->route('feeds.index');
     }
 }
