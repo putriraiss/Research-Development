@@ -27,7 +27,7 @@ Route::view('/event', 'event.event')->name('event');
 
 Route::view('/detail-feeds', 'feeds.detail')->name('detail-feeds');
 
-// Route::view('/project', 'project.project')->name('project');
+//Route::view('/project', 'project.project')->name('project');
 
 Route::resources([
     'feeds'=>FeedsController::class,
