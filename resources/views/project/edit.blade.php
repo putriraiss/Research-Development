@@ -643,7 +643,7 @@
                     </a> <a href="{{ route('feeds.index') }}" class="nav_link">
                         <img src="../assets/foto/feeds.svg" alt="">
                         <span class="nav_name">Feeds</span> </a>
-                    <a href="{{ route('projects.show', 1) }}" class="nav_link">
+                    <a href="{{ route('projects.index') }}" class="nav_link">
                         <img src="../assets/foto/carbon_collaborate.svg" alt="">
                         <span class="nav_name">Collaboration</span>
                     </a> <a href="{{ route('event') }}" class="nav_link">
@@ -670,7 +670,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title fs-5" id="headerAdd">Edit Project</h5>
                 </div>
-                <form action="{{ route('projects.update', $project->id_proj) }}" method="POST">
+                <form action="{{ route('projects.update', $project->id) }}" method="POST">
                     @csrf
                     @method('put')
                     <div class="modal-body">
@@ -682,34 +682,21 @@
                             <label for="">Content</label>
                             <input type="text" class="form-control" name="desc" value="{{ $project->desc_proj }}" placeholder="deskripsi" required>
                         </div>
-                        <div class="form-group">
-                            <label for="">Task</label>
-                            <select class="form-control" name="task_id" required>
-                                <option value="{{ $project->tasks->id_task }}" selected>{{ $project->tasks->nama_task }}</option>
-                                @foreach ($tasks as $task)
-                                    @if ($project->tasks->nama_task != $task->nama_task)
-                                        <option value="{{ $task->id_task }}">{{ $task->nama_task }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
                     </div>
                     <div class="modal-footer">
-
-                        <!-- <form action="{{ route('projects.destroy', $project->id_proj) }}" method="post">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn" style="background-color: red">Delete</button>
-                        </form> -->
-
-                        <a href="{{ route('projects.show', 1) }}" style="text-decoration: none">
+                        <a href="{{ route('projects.show', $project->id) }}" style="text-decoration: none">
                             <button type="button" class="btn" data-bs-dismiss="modal">
                                 Close
                             </button>
                         </a>
                         <button type="submit" class="btn">Submit</button>
+                    </form>
+                    <form action="{{ route('projects.destroy', $project->id) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn" style="background-color: red">Delete</button>
+                    </form>
                     </div>
-                </form>
             </div>
         </div>
     </div>

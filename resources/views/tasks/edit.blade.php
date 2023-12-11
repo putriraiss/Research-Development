@@ -643,7 +643,7 @@
                     </a> <a href="{{ route('feeds.index') }}" class="nav_link">
                         <img src="../assets/foto/feeds.svg" alt="">
                         <span class="nav_name">Feeds</span> </a>
-                    <a href="{{ route('projects.show', 1) }}" class="nav_link">
+                    <a href="{{ route('projects.index') }}" class="nav_link">
                         <img src="../assets/foto/carbon_collaborate.svg" alt="">
                         <span class="nav_name">Collaboration</span>
                     </a> <a href="{{ route('event') }}" class="nav_link">
@@ -668,30 +668,54 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fs-5" id="headerAdd">Add Project</h5>
+                    <h5 class="modal-title fs-5" id="headerAdd">Add Task</h5>
                 </div>
-                <form action="{{ route('projects.store') }}" method="POST">
+                <form action="{{ route('projects.tasks.update', [$task->id_project, $task->id]) }}" method="POST">
                     @csrf
+                    @method('put')
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="">Nama Project</label>
-                            <input type="text" class="form-control" name="nama" placeholder="nama" required>
+                            <label for="">Nama Task</label>
+                            <input value="{{ $task->nama_task }}" type="text" class="form-control" name="nama_task" placeholder="nama" required>
                         </div>
                         <div class="form-group">
                             <label for="">Content</label>
-                            <input type="text" class="form-control" name="desc" placeholder="deskripsi" required>
+                            <input value="{{ $task->desc_task }}" type="text" class="form-control" name="desc_task" placeholder="deskripsi" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Karyawan</label>
+                            <select class="form-control" name="karyawan_nip" required>
+                                <option value="{{ $task->karyawan_nip }}" selected>{{ $task->karyawan->nama_lengkap }}</option>
+                                @foreach ($karyawans as $karyawan)
+                                    @if ($karyawan->nama_lengkap != $task->karyawan->nama_lengkap)
+                                        <option value="{{ $karyawan->nip }}">{{ $karyawan->nama_lengkap }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Status</label>
+                            <select class="form-control" name="status" required>
+                                <option value="{{ $task->status_task }}" selected>{{ $task->status_task == 'completed' ? 'Completed':'Incomplete' }}</option>
+                                <option value="{{ $task->status_task == 'completed' ? 'incomplete':'completed' }}">{{ $task->status_task == 'completed' ? 'Incomplete':'Completed' }}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ route('projects.index') }}">
+                        <a href="{{ route('projects.show', $task->id_project) }}">
                             <button type="button" class="btn" data-bs-dismiss="modal">
                                 Close
                             </button>
                         </a>
                         <button type="submit" class="btn">Submit</button>
+                    </form>
+                        <form action="{{ route('projects.tasks.update', [$task->id_project, $task->id]) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn" style="background-color: red">Delete</button>
+                        </form>
                     </div>
             </div>
-            </form>
         </div>
     </div>
 

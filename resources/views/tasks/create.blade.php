@@ -643,7 +643,7 @@
                     </a> <a href="{{ route('feeds.index') }}" class="nav_link">
                         <img src="../assets/foto/feeds.svg" alt="">
                         <span class="nav_name">Feeds</span> </a>
-                    <a href="{{ route('projects.show', 1) }}" class="nav_link">
+                    <a href="{{ route('projects.index') }}" class="nav_link">
                         <img src="../assets/foto/carbon_collaborate.svg" alt="">
                         <span class="nav_name">Collaboration</span>
                     </a> <a href="{{ route('event') }}" class="nav_link">
@@ -668,22 +668,31 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fs-5" id="headerAdd">Add Project</h5>
+                    <h5 class="modal-title fs-5" id="headerAdd">Add Task</h5>
                 </div>
-                <form action="{{ route('projects.store') }}" method="POST">
+                <form action="{{ route('projects.tasks.store', $page) }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="">Nama Project</label>
+                            <label for="">Nama Task</label>
                             <input type="text" class="form-control" name="nama" placeholder="nama" required>
                         </div>
                         <div class="form-group">
                             <label for="">Content</label>
                             <input type="text" class="form-control" name="desc" placeholder="deskripsi" required>
                         </div>
+                        <div class="form-group">
+                            <label for="">Karyawan</label>
+                            <select class="form-control" name="karyawan_nip" required>
+                                <option selected>Pilih Karyawan!</option>
+                                @foreach ($karyawans as $karyawan)
+                                    <option value="{{ $karyawan->nip }}">{{ $karyawan->nama_lengkap }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ route('projects.index') }}">
+                        <a href="{{ route('projects.show', $page) }}">
                             <button type="button" class="btn" data-bs-dismiss="modal">
                                 Close
                             </button>

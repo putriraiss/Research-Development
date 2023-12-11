@@ -14,106 +14,61 @@ class TasksController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
-
     //
-    public function create(Request $request)
+    public function create($id)
     {
-        $Tasks = Tasks::with('karyawan')->create($request->all());
-
-        return response()->json([
-            'success' => true,
-            'message' => 'New Data created',
-            'data' => [
-                'tasks' => $Tasks
-            ]
+        $karyawans = $this->getData("karyawan")->karyawan;
+        return view('tasks.create', [
+            'karyawans'=>$karyawans,
+            'page'=>$id
         ]);
     }
 
-    public function getAll()
+    public function store(Request $request, $id)
     {
-        $Tasks = Tasks::with('karyawan')->get();
-        if (!$Tasks) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Data not found',
-                'data' => null
-            ], 404);
-        }
+        $this->storeData('task', [
+            'id_project'=>$id,
+            'karyawan_nip'=>$request->karyawan_nip,
+            'nama_task'=>$request->nama,
+            'desc_task'=>$request->desc,
+            'status_task'=>'incomplete'
+        ]);
 
-        return response()->json(
-            [
-                'success' => true,
-                'message' => 'All Data grabbed',
-                'data' => [
-                    'tasks' => $Tasks
-                ]
-            ]
-        );
+        return redirect()->route('projects.show', $id); 
     }
 
-    public function getid($id_task)
+    public function edit($id_project, $id_task)
     {
-        $Tasks = Tasks::with('karyawan')->find($id_task);
-
-        if (!$Tasks) {
-            return response()->json([
-                'success' => false,
-                'message' => 'storage not found',
-                'data' => null
-            ], 404);
-        }
-
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'tasks' => $Tasks
-            ]
+        $karyawans = $this->getData("karyawan")->karyawan;
+        $task = $this->getData("task/$id_task")->tasks;
+        
+        return view('tasks.edit', [
+            'karyawans'=>$karyawans,
+            'task'=>$task
         ]);
     }
 
-    public function update(Request $request, $id_task)
+    public function update(Request $request, $id_project, $id_task)
     {
-        $Tasks = Tasks::with('karyawan')->find($id_task);
-
-        if (!$Tasks) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Data not found',
-                'data' => null
-            ], 404);
+        $status = 'completed';
+        
+        if (!isset($request->status) || $request->status == 'incomplete') {
+            $status = 'incomplete';
         }
 
-        $Tasks->update($request->all());
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data updated',
-            'data' => [
-                'tasks' => $Tasks
-            ]
+        $this->updateData("task/$id_task", [
+            'karyawan_nip'=>$request->karyawan_nip,
+            'nama_task'=>$request->nama_task,
+            'desc_task'=>$request->desc_task,
+            'status_task'=>$status
         ]);
+
+        return redirect()->route('projects.show',$id_project);
     }
 
-    public function delete(Request $request)
+    public function destroy($id_project, $id_task)
     {
-        $Tasks = Tasks::find($request->id_task);
-
-        if (!$Tasks) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Data not found',
-            ], 404);
-        }
-
-        $Tasks->delete();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data deleted successfully',
-        ]);
+        $this->deleteData("task/$id_task");
+        return redirect()->route('projects.show', $id_project);
     }
 }
