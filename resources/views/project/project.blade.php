@@ -713,39 +713,39 @@
                     {{-- <img src="../assets/foto/new-add.png" class="hover-pointer" style="margin-left: auto; margin-top: -35px; right: 30px;width:30px;height:30px;"> --}}
                 </div>
                 <ul class="cards">
-                    @foreach ($projects as $project)
-                        <a href="{{ route('projects.show', $project->id_proj) }}" style="text-decoration: none;">
+                    @for ($i = 0; $i < (count($projects)-3); $i++)
+                        <a href="{{ route('projects.show', $projects[$i]->id) }}" style="text-decoration: none;">
                             <li class="card">
                                 <div style="width: 100%; margin-left: 8px;">
                                     <div class="card-content">
-                                        @if ($project->tasks->status_task == 'completed')
-                                            <div class="badge badge-primary badge-outline" style="color:forestgreen; margin-top:14px;">{{ $project->tasks->status_task }}</div>
+                                        @if ($projects['status'][$i])
+                                            <div class="badge badge-primary badge-outline" style="color:forestgreen; margin-top:14px;">Completed</div>
                                         @else
-                                            <div class="badge badge-primary badge-outline" style="color:rgb(255, 127, 0); margin-top:14px;">{{ $project->tasks->status_task }}</div>
+                                            <div class="badge badge-primary badge-outline" style="color:rgb(255, 127, 0); margin-top:14px;">Incomplete</div>
                                         @endif
-                                        <h4 class="card-title" style="margin-top: 15px">{{ $project->nama_proj }}</h4>
+                                        <h4 class="card-title" style="margin-top: 15px">{{ $projects[$i]->nama_proj }}</h4>
                                     </div>
                                 </div>
                                 <div class="card-link-wrapper" style="display: flex; align-items: center;">
-                                    <a href="{{ route('projects.edit', $project->id_proj) }}">
+                                    <a href="{{ route('projects.edit', $projects[$i]->id) }}">
                                         <img src="../assets/foto/menu-dot.png" alt="" style="margin-left: auto; margin-top: 0; position: absolute; top: 19px; right: 30px;">
                                     </a>
                                 </div>
                             </li>
                         </a>
-                    @endforeach
+                    @endfor
                 </ul>
             </div>
 
             <!-- TENGAH -->
             <div class="col-span-2" style="margin-left: 10px; margin-right: 15px;">
-                {{-- <p id="project-date-made" style="margin-bottom:5px;font-size:15px;">21 November 2023</p> --}}
+                <p id="project-date-made" style="margin-bottom:5px;font-size:15px;">{{ $projects[$index]->created_at }}</p>
                 <h3 class="title" style="text-align: left; font-family: 'Poppins', sans-serif; font-weight:bold;color:#4f4f4f;">
-                    {{ $projectDetail->nama_proj }}</h3>
-                <p id="project-manager" style="margin-top: -20px; margin-bottom:5px; font-size:15px;color:#4f4f4f;font-weight:500;">{{ $karyawan->nama_lengkap }}</p>
+                    {{ $projects[$index]->nama_proj }}</h3>
+                {{-- <p id="project-manager" style="margin-top: -20px; margin-bottom:5px; font-size:15px;color:#4f4f4f;font-weight:500;">{{ $karyawan->nama_lengkap }}</p> --}}
 
                 <div style="display: flex; align-items: center;">
-                    @if ($projectDetail->tasks->status_task == 'completed')
+                    @if ($projects['status'][$index] == true)
                         <progress class="progress progress-success w-56" value="100" max="100" style="margin-top: 10px; margin-bottom: 10px;"></progress>
                         <p style="margin-bottom:5px; margin-left: 20px;font-size:15px;">Completed</p>
                     @else
@@ -755,12 +755,14 @@
                 </div>
                 <!--TASK-->
                 <h4 class="semi-title" style="color:#4f4f4f; margin-top: 25px;font-size:18px;font-weight:bold;margin-bottom:35px;">Overview</h4>
-                <p style="text-align: justify; text-indent:50px;font-size:15px;">{{ $projectDetail->desc_proj }}</p>
+                <p style="text-align: justify; text-indent:50px;font-size:15px;">{{ $projects[$index]->desc_proj }}</p>
                 <div style="display: flex; align-items: center;">
                     <h4 class="semi-title" style="color:#4f4f4f; margin-bottom:35px;margin-top: 40px;font-size:18px;font-weight:bold">Tasks</h4>
                     {{-- <img src="../assets/foto/new-add.png" id="add-task" alt="" style="margin-left: auto; margin-right:15px;margin-top: 20px; right: 30px;width:30px;height:30px;"> --}}
                     <button class="image-button" data-toggle="modal" data-target="#exampleModal" style="margin-left: auto; margin-right:15px;margin-top: 20px; right: 30px;width:30px;height:30px;">
-                        <img src="../assets/foto/new-add.png" class="button-image">
+                        <a href="{{ route('projects.tasks.create', $projects[$index]->id) }}">
+                            <img src="../assets/foto/new-add.png" class="button-image">
+                        </a>
                       </button>
                 </div>
                 <div class="card-task" style="margin-left: 8px; margin-right: 15px; padding: 20px; position: relative;">
@@ -774,40 +776,53 @@
                         <table class="table-task">
                             <thead>
                                 <tr class="th-tengah">
-                                    <th style="width: 100%;">
+                                    <th style="width: 60%;">
                                         <div class="font-bold" style="margin-left:10px">Activity</div>
                                     </th>
-                                    {{-- <th style="width: 30%;">Due Date</th>
-                                    <th style="width: 30%;">Time</th> --}}
+                                    <th style="width: 40%;">PIC</th>
+                                    <th style="width: 30%;"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- row 1 -->
+                                @foreach ($projects['tasks'][$index] as $task)
                                 <tr>
                                     <td>
                                         <div class="flex items-center gap-3">
                                             <label>
-                                                <input type="checkbox" class="checkbox flex rounded-full" style="margin-top: 20px;" @checked($projectDetail->tasks->status_task == 'completed')>
+                                                <form action="{{ route('projects.tasks.update', [$task->id_project, $task->id]) }}" method="post">
+                                                    @csrf
+                                                    @method('put')
+                                                    <input type="hidden" name="karyawan_nip" value="{{ $task->karyawan_nip }}">
+                                                    <input type="hidden" name="nama_task" value="{{ $task->nama_task }}">
+                                                    <input type="hidden" name="desc_task" value="{{ $task->desc_task }}">
+                                                    <input name="status" value="true" onChange='submit();' type="checkbox" class="checkbox flex rounded-full" style="margin-top: 20px;" @checked($task->status_task == 'completed')>
+                                                </form>
                                             </label>
                                             <div style="display: flex; flex-direction: column;">
-                                                <div class="font-bold opacity-100" style="font-size: 15px;">{{ $projectDetail->tasks->nama_task }}</div>
-                                                <div class="text-xs">{{ $projectDetail->tasks->desc_task }}</div>
+                                                <div class="font-bold opacity-100" style="font-size: 15px;">{{ $task->nama_task }}</div>
+                                                <div class="text-xs">{{ $task->desc_task }}</div>
                                             </div>
                                         </div>
                                     </td>
-                                    {{-- <td>
+                                    <td>
                                         <div class="container" style="text-align: left; align-content: left; margin-left: 0;">
                                             <div style="display: flex; width: 100%; align-content: left; text-align: left; align-items: flex-start;">
-                                                <p id="cal-date" style="margin-right: 5px; margin-bottom: 5px; font-size: 15px;">21/11/23</p>
+                                                <p id="cal-date" style="margin-right: 5px; margin-bottom: 5px; font-size: 15px;">{{ $task->karyawan->nama_lengkap }}</p>
                                                 <div style="display: flex; flex-direction: column;">
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <time class="text-sm opacity-50" style="margin-bottom: 5px;">12:46</time>
-                                    </td> --}}
+                                        <a href="{{ route('projects.tasks.edit', [$task->id_project, $task->id]) }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                                            </svg>
+                                        </a>
+                                    </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -853,6 +868,7 @@
                     <div class="overflow-x-auto">
                         <table class="table" id="team-member">
                             <tbody>
+                                @foreach ($projects['karyawan'][$index] as $karyawan)
                                 <!-- row 1 -->
                                 <tr>
                                     <td>
@@ -871,6 +887,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
 

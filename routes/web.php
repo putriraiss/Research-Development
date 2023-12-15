@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FeedsController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,11 +28,12 @@ Route::view('/event', 'event.event')->name('event');
 
 Route::view('/detail-feeds', 'feeds.detail')->name('detail-feeds');
 
-//Route::view('/project', 'project.project')->name('project');
+// Route::view('/project', 'project.project')->name('project');
 
 Route::resources([
     'feeds'=>FeedsController::class,
     'projects'=>ProjectsController::class,
+    'projects.tasks'=>TasksController::class,
 ]);
 
 //API
